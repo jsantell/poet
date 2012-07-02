@@ -1,0 +1,30 @@
+{
+  "name" : "swag-blog",
+  "description" : "quick and easy jekyll-style static blog module",
+  "version" : "0.1.0",
+  "main" : "lib/swag-blog",
+  "dependencies" : {
+    "node-markdown" : ">= 0.1.0",
+    "front-matter"  : ">= 0.0.1",
+    "json-front-matter"  : ">= 0.1.1"
+  },
+  "devDependencies" : {
+    "nodeunit" : ">= 0.7.4"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "http://github.com/jsantell/swag-blog"
+  },
+  "keywords" : [
+    "blog",
+    "jekyll",
+    "static",
+    "markdown"
+  ],
+  "author" : {
+    "name" : "Jordan Santell",
+    "url" : "http://github.com/jsantell"
+  },
+  "license" : "MIT",
+  "engines" : ["node >= 0.6.12"]
+}
