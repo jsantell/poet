@@ -57,6 +57,7 @@ The following variables are exposed to all views
 * `pageCount` get a total number of pages
 * `pageUrl( pageNum )` get a link to page `pageNum` of a post list
 * `tagUrl( tag )` get a URL to the page of the tag view of `tag`
+* `categoryUrl( cat )` get a URL to the page of the category view of `cat`
 
 #### Post View Params
 
