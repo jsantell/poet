@@ -1,6 +1,6 @@
 {
   "name" : "swag-blog",
-  "description" : "quick and easy jekyll-style static blog module",
+  "description" : "quick and easy markdown-based blog module",
   "version" : "0.1.0",
   "main" : "lib/swag-blog",
   "dependencies" : {
@@ -13,7 +13,7 @@
   },
   "repository" : {
     "type" : "git",
-    "url" : "http://github.com/jsantell/swag-blog"
+    "url" : "http://github.com/jsantell/node-swag-blog"
   },
   "keywords" : [
     "blog",
