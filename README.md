@@ -44,8 +44,7 @@ swag( app, {
 ### Posts
 
 Posts are constructed in markdown, prefixed by front matter via [YAML](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) or [JSON](https://github.com/jsantell/node-json-front-matter). All attributes are passed into the view template, with reserved Express attributes (`layout`, `status`) affecting Express rendering.
-
-### View Params
+### Local Variables in the View
 
 The following variables are exposed to all views
 
@@ -59,26 +58,27 @@ The following variables are exposed to all views
 * `tagUrl( tag )` get a URL to the page of the tag view of `tag`
 * `categoryUrl( cat )` get a URL to the page of the category view of `cat`
 
-#### Post View Params
+#### Post Locals
 
 When on a specific post's page, all the post's metadata specified in the front-matter is exposed within the `post` object, as well as the following:
 
 * `post.url` The url of the post
 * `post.content` The body of the post
+* `post.preview` The body of the post up to the first new line character
 
-#### Tag View Params
+#### Tag Locals 
 
 When on a tag page
 * `posts` An array of all post objects that have the current tag
 * `tag` A string of the current tag's name
 
-#### Post List View Params
+#### Post List Locals
 
 When on a post list page 
 * `posts` An array of all post objects that are within the current post range
 * `page` The number of the current page
 
-#### Category View Params
+#### Category Locals
 
 When on a category list page
 * `posts` An array of all post objects that belong to the current category
