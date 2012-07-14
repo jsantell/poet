@@ -4,12 +4,12 @@
   "version" : "0.1.0",
   "main" : "lib/swag-blog",
   "dependencies" : {
-    "node-markdown" : ">= 0.1.0",
-    "front-matter"  : ">= 0.0.1",
-    "json-front-matter"  : ">= 0.1.1"
+    "node-markdown"     : ">= 0.1.X",
+    "front-matter"      : ">= 0.0.X",
+    "json-front-matter" : ">= 0.1.X"
   },
   "devDependencies" : {
-    "nodeunit" : ">= 0.7.4"
+    "should" : ">= 0.6.3"
   },
   "repository" : {
     "type" : "git",
@@ -17,8 +17,6 @@
   },
   "keywords" : [
     "blog",
-    "jekyll",
-    "static",
     "markdown"
   ],
   "author" : {
