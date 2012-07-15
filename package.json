@@ -4,12 +4,12 @@
   "version" : "0.1.0",
   "main" : "lib/swag-blog",
   "dependencies" : {
-    "node-markdown"     : ">= 0.1.X",
-    "front-matter"      : ">= 0.0.X",
-    "json-front-matter" : ">= 0.1.X"
+    "node-markdown"     : ">= 0.1.x",
+    "json-front-matter" : ">= 0.1.x"
   },
   "devDependencies" : {
-    "should" : ">= 0.6.3"
+    "chai"    : ">= 1.1.1",
+    "express" : "= 2.5.11"
   },
   "repository" : {
     "type" : "git",

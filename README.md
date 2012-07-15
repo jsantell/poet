@@ -43,7 +43,8 @@ swag( app, {
 
 ### Posts
 
-Posts are constructed in markdown, prefixed by front matter via [YAML](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) or [JSON](https://github.com/jsantell/node-json-front-matter). All attributes are passed into the view template, with reserved Express attributes (`layout`, `status`) affecting Express rendering.
+Posts are constructed in markdown, prefixed by front matter via [YAML](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) or [JSON](https://github.com/jsantell/node-json-front-matter). All attributes are stored into the post object.
+
 ### Local Variables in the View
 
 The following variables are exposed to all views
@@ -85,5 +86,11 @@ When on a category list page
 * `category` A string of the current category's name
 
 ### TODO
+
+Awaiting pull requests
+
+* [allow front-matter to be installed on node 0.8](https://github.com/jxson/front-matter/pull/3)
+* [fix global leak in node-markdown for mocha tests](https://github.com/andris9/node-markdown/pull/3)
+
 
 Right now all the post data is stored in memory for quick serving -- a caching option (Jekyll-style) for larger sites wouldn't be a terrible idea.
