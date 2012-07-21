@@ -20,26 +20,30 @@ var
 
 swag( app, {
   posts: './_posts/',
-  route: '/blog/'
-});
+  postsPerPage: 5,
+  metaFormat: 'json'
+})
+  .createPostRoute()
+  .createPostListRoute()
+  .createTagRoute()
+  .createCategoryRoute()
+  .init();
 ```
 
 #### Options
 
 * `posts` path to directory of your markdown files of posts (default: `./\_posts/`)
+* `metaFormat` format of your front matter on every blog post. Can be `yaml` or `json`. (default: `json`)
+* `postsPerPage` How many posts are displayed per page in the post list
 
-* `postView` view file to use for posts (default: `post`)
-* `postListView` view file to use for post lists (default: `list`)
-* `tagView` view file to use for tag view (default: `tag`)
-* `categoryView` view file to use for category view (default: `category`)
+### Methods
 
-* `postRoute` route to be prefixed to post name, like `http://yourblog.com/post/hello-world` (default: `/post/`)
-* `postListRoute` route to be prefixed to post list, like `http://yourblog.com/post/3` for third page of list (default: `/posts/`)
-* `tagRoute` route to be prefixed to post list, like `http://yourblog.com/tag/node` for list of posts of tag 'node' (default: `/tag/`)
-* `categoryRoute` route to be prefixed to category post list, like `http://yourblog.com/category/plugins` for category of 'plugins' (default: `/category/`)
+The methods autogenerate routes for individual posts, post lists, tags and categories. You can choose to use the generated routes, configure the generated routes, or just use your own. Each generator takes a route and a view file as their arguments.
 
-* `postsPerPage` number of posts per page if you use pagination or list views (default: `5`)
-* `metaFormat` Format of the metadata in your posts, either `yaml` or `json` (default: `json`)
+* `createPostRoute('/post/:post', 'post')` creates a route for an individual post. Locals passed in are listed in *post locals*.
+* `createPostListRoute('/posts/:page', 'postList')` creates a route for a paginated view of posts. Locals passed in are listed in *post list locals*
+* `createTagRoute('/tag/:tag', 'tag')` creates a route for a listing of posts with specified tag. Locals passed in are listed in *tag locals*
+* `createCategoryRoute('/category/:category', 'category')` creates a route for a listing of posts in the specified category. Locals passed in are listed in *category locals*
 
 ### Posts
 
@@ -67,17 +71,17 @@ When on a specific post's page, all the post's metadata specified in the front-m
 * `post.content` The body of the post
 * `post.preview` The body of the post up to the first new line character
 
-#### Tag Locals 
-
-When on a tag page
-* `posts` An array of all post objects that have the current tag
-* `tag` A string of the current tag's name
-
 #### Post List Locals
 
 When on a post list page 
 * `posts` An array of all post objects that are within the current post range
 * `page` The number of the current page
+
+#### Tag Locals 
+
+When on a tag page
+* `posts` An array of all post objects that have the current tag
+* `tag` A string of the current tag's name
 
 #### Category Locals
 
@@ -85,12 +89,6 @@ When on a category list page
 * `posts` An array of all post objects that belong to the current category
 * `category` A string of the current category's name
 
-### TODO
+### Development
 
-Awaiting pull requests
-
-* [allow front-matter to be installed on node 0.8](https://github.com/jxson/front-matter/pull/3)
-* [fix global leak in node-markdown for mocha tests](https://github.com/andris9/node-markdown/pull/3)
-
-
-Right now all the post data is stored in memory for quick serving -- a caching option (Jekyll-style) for larger sites wouldn't be a terrible idea.
+To run tests, ensure you have Mocha installed `npm install mocha -g` and from the project root run `make test`
