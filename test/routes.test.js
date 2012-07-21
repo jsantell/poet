@@ -2,10 +2,11 @@ var
   express = require( 'express' ),
   chai    = require( 'chai' ),
   should  = chai.should(),
-  expect  = chai.expect;
+  expect  = chai.expect,
+  routes  = require( '../lib/swag-blog/routes' )();
 
 describe( 'Routes', function () {
-  it( 'should pass in the locals for the view', function ( done ) {
+  it( 'should make the correct auto routes by default', function ( done ) {
     var
       app = express.createServer(),
       swag = require( '../lib/swag-blog' )( app );
@@ -16,20 +17,38 @@ describe( 'Routes', function () {
       .createTagRoute()
       .createCategoryRoute()
       .init(function () {
-      app._locals.postCount.should.equal(3);
-      app._locals.allPosts.should.have.length(3);
-      app._locals.allTags.should.include('a');
-      app._locals.allTags.should.include('b');
-      app._locals.allTags.should.include('c');
-      app._locals.allTags.should.include('d');
-      app._locals.allCategories.should.include('testing');
-      app._locals.allCategories.should.include('other cat');
-      app._locals.pageUrl(3).should.equal('/posts/3');
-      app._locals.tagUrl('sometag').should.equal('/tag/sometag');
-      app._locals.categoryUrl('somecat').should.equal('/category/somecat');
-      app._locals.getPosts(2,3).should.have.length(1);
-      app._locals.pageCount.should.equal(1);
-      done();
-    });
+        app.lookup.get('/post/:post')[0].callbacks[0]
+          .toString().should.equal( routes.post().toString() );
+        app.lookup.get('/posts/:page')[0].callbacks[0]
+          .toString().should.equal( routes.postList().toString() );
+        app.lookup.get('/tag/:tag')[0].callbacks[0]
+          .toString().should.equal( routes.tag().toString() );
+        app.lookup.get('/category/:category')[0].callbacks[0]
+          .toString().should.equal( routes.category().toString() );
+        done();
+      });
+  });
+
+  it( 'should allow configurable routes in the generator', function ( done ) {
+    var
+      app = express.createServer(),
+      swag = require( '../lib/swag-blog' )( app );
+
+    swag.set({ posts: './test/_postsJson', metaFormat: 'json' })
+      .createPostRoute( '/myposts/:post', 'post' )
+      .createPostListRoute( '/postlist/:page', 'postList' )
+      .createTagRoute( '/mytags/:tag', 'tag' )
+      .createCategoryRoute( '/mycats/:category', 'category' )
+      .init(function () {
+        app.lookup.get('/myposts/:post')[0].callbacks[0]
+          .toString().should.equal( routes.post().toString() );
+        app.lookup.get('/postlist/:page')[0].callbacks[0]
+          .toString().should.equal( routes.postList().toString() );
+        app.lookup.get('/mytags/:tag')[0].callbacks[0]
+          .toString().should.equal( routes.tag().toString() );
+        app.lookup.get('/mycats/:category')[0].callbacks[0]
+          .toString().should.equal( routes.category().toString() );
+        done();
+      });
   });
 });
