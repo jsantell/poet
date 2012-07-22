@@ -8,9 +8,9 @@ describe( 'Locals', function () {
   it( 'should pass in the locals for the view', function ( done ) {
     var
       app = express.createServer(),
-      swag = require( '../lib/swag-blog' )( app );
+      poet = require( '../lib/poet' )( app );
 
-    swag.set({ posts: './test/_postsYaml', metaFormat: 'yaml' }).init(function () {
+    poet.set({ posts: './test/_postsYaml', metaFormat: 'yaml' }).init(function () {
       app._locals.postCount.should.equal(3);
       app._locals.allPosts.should.have.length(3);
       app._locals.allTags.should.include('a');

@@ -3,7 +3,7 @@ var
   chai    = require( 'chai' ),
   should  = chai.should(),
   expect  = chai.expect,
-  routes  = require( '../lib/swag-blog/routes' )(),
+  routes  = require( '../lib/poet/routes' )(),
   reqMock = require( './helpers/routeMocks' ).req,
   resMock = require( './helpers/routeMocks' ).res;
 
@@ -11,9 +11,9 @@ describe( 'Routes', function () {
   it( 'should make the correct auto routes by default', function ( done ) {
     var
       app = express.createServer(),
-      swag = require( '../lib/swag-blog' )( app );
+      poet = require( '../lib/poet' )( app );
 
-    swag.set({ posts: './test/_postsJson', metaFormat: 'json' })
+    poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
       .createPostRoute()
       .createPostListRoute()
       .createTagRoute()
@@ -34,7 +34,7 @@ describe( 'Routes', function () {
   it( 'should use the default views', function ( done ) {
     var
       app = express.createServer(),
-      swag = require( '../lib/swag-blog' )( app ),
+      poet = require( '../lib/poet' )( app ),
       reqPost = reqMock({ post: 'test1'}),
       reqPostList = reqMock({ page: 1}),
       reqTag = reqMock({ tag: 'a'}),
@@ -63,7 +63,7 @@ describe( 'Routes', function () {
       };
     })();
 
-    swag.set({ posts: './test/_postsJson', metaFormat: 'json' })
+    poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
       .createPostRoute()
       .createPostListRoute()
       .createTagRoute()
@@ -79,9 +79,9 @@ describe( 'Routes', function () {
   it( 'should allow configurable routes in the generator', function ( done ) {
     var
       app = express.createServer(),
-      swag = require( '../lib/swag-blog' )( app );
+      poet = require( '../lib/poet' )( app );
 
-    swag.set({ posts: './test/_postsJson', metaFormat: 'json' })
+    poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
       .createPostRoute( '/myposts/:post', 'post' )
       .createPostListRoute( '/postlist/:page', 'postList' )
       .createTagRoute( '/mytags/:tag', 'tag' )
@@ -102,7 +102,7 @@ describe( 'Routes', function () {
   it( 'should use configurable views', function ( done ) {
     var
       app = express.createServer(),
-      swag = require( '../lib/swag-blog' )( app ),
+      poet = require( '../lib/poet' )( app ),
       reqPost = reqMock({ post: 'test1'}),
       reqPostList = reqMock({ page: 1}),
       reqTag = reqMock({ tag: 'a'}),
@@ -131,7 +131,7 @@ describe( 'Routes', function () {
       };
     })();
 
-    swag.set({ posts: './test/_postsJson', metaFormat: 'json' })
+    poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
       .createPostRoute( '/myposts/:post', 'postView' )
       .createPostListRoute( '/postlist/:page', 'postListView' )
       .createTagRoute( '/mytags/:tag', 'tagView' )

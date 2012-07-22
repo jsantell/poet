@@ -1,24 +1,24 @@
-swag-blog
+Poet
 ======
 
-Swag has your code-blogging back. Renders markdown files as posts, tag it up with metadata that's passed into any view engine you want, instant pagination, tag and category views, and home in time for dinner.
+Poet has your code-blogging back. Renders markdown files as posts, tag it up with metadata that's passed into any view engine you want, instant pagination, tag and category views, and home in time for dinner.
 
-View the source for [jsantell.com](https://github.com/jsantell/jsantell.com) to see an example of it in use.
+View the source for [jsantell.com](https://github.com/jsantell/jsantell.com) to see an example of Poet in use.
 
 ### Installing
 
-* `npm install swag-blog`
+* `npm install poet`
 
 ### Setup
 
-Include swag and call it, passing in your Express app and options.
+Include Poet in your package.json and add it to your app, passing in your Express app and options.
 ```javascript
 var
   express = require('express'),
-  swag    = require('swag-blog'),
+  poet    = require('poet'),
   app     = express.createServer();
 
-swag( app, {
+poet( app, {
   posts: './_posts/',
   postsPerPage: 5,
   metaFormat: 'json'

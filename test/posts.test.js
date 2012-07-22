@@ -13,9 +13,9 @@ describe( 'Posts', function () {
     it( "should store all the post's metadata correctly", function ( done ) {
       var
         app = express.createServer(),
-        swag = require( '../lib/swag-blog' )( app );
+        poet = require( '../lib/poet' )( app );
       
-      swag.set({ posts: './test/_postsJson', metaFormat: 'json' }).init(function () {
+      poet.set({ posts: './test/_postsJson', metaFormat: 'json' }).init(function () {
         var posts = app._locals.allPosts;
         posts.should.have.length(3);
         posts[2].title.should.equal('Test Post One');
@@ -42,9 +42,9 @@ describe( 'Posts', function () {
     it( "should store all the post's metadata correctly", function ( done ) {
       var
         app = express.createServer(),
-        swag = require( '../lib/swag-blog' )( app );
+        poet = require( '../lib/poet' )( app );
       
-      swag.set({ posts: './test/_postsYaml', metaFormat: 'yaml' }).init(function () {
+      poet.set({ posts: './test/_postsYaml', metaFormat: 'yaml' }).init(function () {
         var posts = app._locals.allPosts;
         posts.should.have.length(3);
         posts[2].title.should.equal('Test Post One');
