@@ -1,4 +1,4 @@
 REPORTER = nyan
 .PHONY : test
 test:
-	@mocha --reporter $(REPORTER) --ignore-leaks
+	@mocha --reporter $(REPORTER)
