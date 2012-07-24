@@ -69,7 +69,7 @@ When on a specific post's page, all the post's metadata specified in the front-m
 
 * `post.url` The url of the post
 * `post.content` The body of the post
-* `post.preview` The body of the post up to the first new line character
+* `post.preview` If a preview property was used in the markdown, this will be the markdown formatted preview -- otherwise, it's the body of the post up to the first new line character
 
 #### Post List Locals
 
