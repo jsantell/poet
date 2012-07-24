@@ -14,7 +14,7 @@ describe( 'Posts', function () {
       var
         app = express.createServer(),
         poet = require( '../lib/poet' )( app );
-      
+
       poet.set({ posts: './test/_postsJson', metaFormat: 'json' }).init(function () {
         var posts = app._locals.allPosts;
         posts.should.have.length(3);
@@ -25,25 +25,29 @@ describe( 'Posts', function () {
         posts[2].category.should.equal('testing');
         posts[2].url.should.equal('/post/test1');
         posts[2].arbitrary.should.equal('arbitrary content');
-    
+
         // Also tests HTML rendering
         posts[2].preview.should.equal( postPreview );
         posts[2].content.should.equal( postBody );
-      
+
         // All posts should be in order
         posts[1].title.should.equal('Test Post Three');
         posts[0].title.should.equal('Test Post Two');
+
+        // Preview parameter should work and turn into html
+        posts[0].preview.should.equal( '<p><em>some content</em></p>' );
+
         done();
       });
     });
   });
-  
+
   describe( 'Posts with YAML front-matter', function () {
     it( "should store all the post's metadata correctly", function ( done ) {
       var
         app = express.createServer(),
         poet = require( '../lib/poet' )( app );
-      
+
       poet.set({ posts: './test/_postsYaml', metaFormat: 'yaml' }).init(function () {
         var posts = app._locals.allPosts;
         posts.should.have.length(3);
@@ -54,14 +58,18 @@ describe( 'Posts', function () {
         posts[2].category.should.equal('testing');
         posts[2].url.should.equal('/post/test1');
         posts[2].arbitrary.should.equal('arbitrary content');
-    
+
         // Also tests HTML rendering
         posts[2].preview.should.equal( postPreview );
         posts[2].content.should.equal( postBody );
-      
+
         // All posts should be in order
         posts[1].title.should.equal('Test Post Three');
         posts[0].title.should.equal('Test Post Two');
+
+        // Preview parameter should work and turn into html
+        posts[0].preview.should.equal( '<p><em>some content</em></p>' );
+
         done();
       });
     });

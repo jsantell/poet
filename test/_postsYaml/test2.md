@@ -6,6 +6,7 @@ tags:
   - c
 category: testing
 date: 7-15-2012
+preview: "*some content*"
 ---
 
 *Lorem ipsum* dolor sit amet, consectetur adipisicing elit.
