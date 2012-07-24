@@ -44,6 +44,7 @@ The methods autogenerate routes for individual posts, post lists, tags and categ
 * `createPostListRoute('/posts/:page', 'postList')` creates a route for a paginated view of posts. Locals passed in are listed in *post list locals*
 * `createTagRoute('/tag/:tag', 'tag')` creates a route for a listing of posts with specified tag. Locals passed in are listed in *tag locals*
 * `createCategoryRoute('/category/:category', 'category')` creates a route for a listing of posts in the specified category. Locals passed in are listed in *category locals*
+* `middleware()` returns a middleware function for attaching all the local variables to the request object to make your own routes
 
 ### Posts
 
