@@ -17,7 +17,7 @@ describe( 'Posts', function () {
 
       // Should default to json
       poet.set({ posts: './test/_postsJson' }).init(function () {
-        var posts = app._locals.allPosts;
+        var posts = app._locals.postList;
         posts.should.have.length(3);
         posts[2].title.should.equal('Test Post One');
         posts[2].tags.should.have.length(2);
@@ -50,7 +50,7 @@ describe( 'Posts', function () {
         poet = require( '../lib/poet' )( app );
 
       poet.set({ posts: './test/_postsYaml', metaFormat: 'yaml' }).init(function () {
-        var posts = app._locals.allPosts;
+        var posts = app._locals.postList;
         posts.should.have.length(3);
         posts[2].title.should.equal('Test Post One');
         posts[2].tags.should.have.length(2);

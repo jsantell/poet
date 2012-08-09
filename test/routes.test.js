@@ -15,14 +15,14 @@ describe( 'Routes', function () {
 
     poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
       .createPostRoute()
-      .createPostListRoute()
+      .createPageRoute()
       .createTagRoute()
       .createCategoryRoute()
       .init(function () {
         app.lookup.get('/post/:post')[0].callbacks[0]
           .toString().should.equal( routes.post().toString() );
-        app.lookup.get('/posts/:page')[0].callbacks[0]
-          .toString().should.equal( routes.postList().toString() );
+        app.lookup.get('/page/:page')[0].callbacks[0]
+          .toString().should.equal( routes.page().toString() );
         app.lookup.get('/tag/:tag')[0].callbacks[0]
           .toString().should.equal( routes.tag().toString() );
         app.lookup.get('/category/:category')[0].callbacks[0]
@@ -36,15 +36,15 @@ describe( 'Routes', function () {
       app = express.createServer(),
       poet = require( '../lib/poet' )( app ),
       reqPost = reqMock({ post: 'test1'}),
-      reqPostList = reqMock({ page: 1}),
+      reqPage = reqMock({ page: 1}),
       reqTag = reqMock({ tag: 'a'}),
       reqCategory = reqMock({ category: 'testing' }),
       resPost = resMock(function () {
         resPost.viewName.should.equal('post');
         checkDone();
       }),
-      resPostList = resMock(function () {
-        resPostList.viewName.should.equal('postList');
+      resPage = resMock(function () {
+        resPage.viewName.should.equal('page');
         checkDone();
       }),
       resTag = resMock(function () {
@@ -65,12 +65,12 @@ describe( 'Routes', function () {
 
     poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
       .createPostRoute()
-      .createPostListRoute()
+      .createPageRoute()
       .createTagRoute()
       .createCategoryRoute()
         .init(function () {
         app.lookup.get('/post/:post')[0].callbacks[0]( reqPost, resPost );
-        app.lookup.get('/posts/:page')[0].callbacks[0]( reqPostList, resPostList );
+        app.lookup.get('/page/:page')[0].callbacks[0]( reqPage, resPage );
         app.lookup.get('/tag/:tag')[0].callbacks[0]( reqTag, resTag );
         app.lookup.get('/category/:category')[0].callbacks[0]( reqCategory, resCategory );
       });
@@ -83,14 +83,14 @@ describe( 'Routes', function () {
 
     poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
       .createPostRoute( '/myposts/:post', 'post' )
-      .createPostListRoute( '/postlist/:page', 'postList' )
+      .createPageRoute( '/pagesss/:page', 'page' )
       .createTagRoute( '/mytags/:tag', 'tag' )
       .createCategoryRoute( '/mycats/:category', 'category' )
       .init(function () {
         app.lookup.get('/myposts/:post')[0].callbacks[0]
           .toString().should.equal( routes.post().toString() );
-        app.lookup.get('/postlist/:page')[0].callbacks[0]
-          .toString().should.equal( routes.postList().toString() );
+        app.lookup.get('/pagesss/:page')[0].callbacks[0]
+          .toString().should.equal( routes.page().toString() );
         app.lookup.get('/mytags/:tag')[0].callbacks[0]
           .toString().should.equal( routes.tag().toString() );
         app.lookup.get('/mycats/:category')[0].callbacks[0]
@@ -104,15 +104,15 @@ describe( 'Routes', function () {
       app = express.createServer(),
       poet = require( '../lib/poet' )( app ),
       reqPost = reqMock({ post: 'test1'}),
-      reqPostList = reqMock({ page: 1}),
+      reqPage = reqMock({ page: 1}),
       reqTag = reqMock({ tag: 'a'}),
       reqCategory = reqMock({ category: 'testing' }),
       resPost = resMock(function () {
         resPost.viewName.should.equal('postView');
         checkDone();
       }),
-      resPostList = resMock(function () {
-        resPostList.viewName.should.equal('postListView');
+      resPage = resMock(function () {
+        resPage.viewName.should.equal('pageView');
         checkDone();
       }),
       resTag = resMock(function () {
@@ -133,12 +133,12 @@ describe( 'Routes', function () {
 
     poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
       .createPostRoute( '/myposts/:post', 'postView' )
-      .createPostListRoute( '/postlist/:page', 'postListView' )
+      .createPageRoute( '/postlist/:page', 'pageView' )
       .createTagRoute( '/mytags/:tag', 'tagView' )
       .createCategoryRoute( '/mycats/:category', 'categoryView' )
       .init(function () {
         app.lookup.get('/myposts/:post')[0].callbacks[0]( reqPost, resPost );
-        app.lookup.get('/postlist/:page')[0].callbacks[0]( reqPostList, resPostList );
+        app.lookup.get('/postlist/:page')[0].callbacks[0]( reqPage, resPage );
         app.lookup.get('/mytags/:tag')[0].callbacks[0]( reqTag, resTag );
         app.lookup.get('/mycats/:category')[0].callbacks[0]( reqCategory, resCategory );
       });

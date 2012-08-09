@@ -16,10 +16,8 @@ describe( 'Routes', function () {
     poet.set({ posts: './test/_postsJson', metaFormat: 'json' }).init(function () {
       // Test a few properties of response
       request( app ).get( '/' ).expect({
-        postCount : 3,
-        allTags : [ 'a', 'b', 'c', 'd' ],
-        pageCount : 1,
-        allCategories : [ 'testing', 'other cat' ]
+        tagList : [ 'a', 'b', 'c', 'd' ],
+        categoryList: [ 'testing', 'other cat' ]
       }, done );
     });
     
@@ -30,10 +28,8 @@ describe( 'Routes', function () {
 
     app.get( '/', function ( req, res ) {
       res.send({
-        postCount : req.poet.postCount,
-        allTags   : req.poet.allTags,
-        pageCount : req.poet.pageCount,
-        allCategories : req.poet.allCategories
+        tagList   : req.poet.tagList,
+        categoryList : req.poet.categoryList
       });
     });
   });
