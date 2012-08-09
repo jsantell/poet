@@ -1,0 +1,27 @@
+!!!
+html
+  head
+    title= 'Poet Demo'
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='/css/bootstrap.css')
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.brand(href='/') Poet Demos
+    .wrap
+      .container
+        .row
+          .span8
+            != body
+          .span4
+            .well.sidebar-nav
+              ul.nav.nav-list
+                li.nav-header categories
+                - each cat in categoryList
+                  li
+                    a(href=categoryUrl(cat)) #{cat}
+                li.nav-header tags
+                - each tag in tagList
+                  li
+                    a(href=tagUrl(tag)) #{tag}
