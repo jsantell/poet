@@ -2,23 +2,84 @@
 <html>
 	<head>
 		<title>Poet -- node.js blogging platform</title>
-		<link rel="stylesheet" href="poet.css" />
+		<link rel="stylesheet" href="styles/poet.css" />
+		<link rel="stylesheet" href="styles/prettify.css" />
+		<link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		<div class="wrap">
-			<div class="header">
+		<div class="header">
+			<div class="wrap">
 				<h1>Poet</h1>
 				<h2>write your code love poem</h2>
 			</div>
+		</div>
+		<div class="wrap">
 			<div class="section">
 				<h2>What is Poet?</h2>
 				<p>Poet is a blog generator in node.js to generate routing, render markdown posts, and get a blog up and running <em>fast</em>. Poet may not make you blog-famous, and it may give you one less excuse for not having a blog, but, just imagine the insane hipster cred you get for having a blog in node.js. <em>"Cool blog, is this Wordpress or something?"</em> your square friend asks. <em>"Nah dude, this is in node,"</em> you respond, while skateboarding off into the sunset, doing mad flips and stuff. Little do they know you just used Poet's autoroute generation to get your content up in that internet.</p>
 			</div>
 			<div class="section">
 				<h2>Getting Started</h2>
+				<p>First thing first, throw <strong>Poet</strong> into your express app's package.json, or just install it locally with:</p>
+				<pre>npm install poet</pre>
+				<p>Once you have the <strong>Poet</strong> module in your app, just call it and pass in your express server and use some autorouting methods. Now you just need to make some posts and you're good to go!</p>
+				<pre>
+		var
+		  express = require('express'),
+		  poet    = require('poet'),
+		  app     = express.createServer();
 
+		poet( app )
+		  .createPostRoute()
+		  .createPageRoute()
+		  .createTagRoute()
+		  .createCategoryRoute()
+		  .init();
+				</pre>
+				<p>You can also pass in some configuration options, and specify a callback in the <em>init</em> method once all your posts are loaded up. Below are the config defaults:</p>
+				<pre>
+	var
+		express = require('express'),
+		poet    = require('poet'),
+		app     = express.createServer();
+
+	poet( app, {
+		posts: './_posts/',  // Directory of posts
+		postsPerPage: 5,     // How many posts per page if you use pagination
+		metaFormat: 'json'   // Which formatter should be used in posts
+	})
+		.createPostRoute()
+		.createPageRoute()
+		.createTagRoute()
+		.createCategoryRoute()
+		.init(function () {
+			// Some callback to run once everything is set up
+		});
+				</pre>
+			</div>
+			<div class="section">
+				<h2>Posts</h2>
+				<p>Posts are constructed in markdown, prefixed by front matter via <a href="https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter" title="YAML Front Matter">YAML</a> or <a href="https://github.com/jsantell/node-json-front-matter" title="JSON Front Matter">JSON</a>. All attributes are stored in the posts object. An example of a blog post formatted with JSON Front Matter is below:</p>
+				<pre>
+{{{
+	"title" : "Hello World.js",
+	"tags"  : [ "blog", "fun" ],
+	"category" : "javascript",
+	"date" : "8-9-2012"
+}}}
+
+This is the content for my blog post. Blawg blawg blawg blawg.
+				</pre>
+				<p>With autoroutes, the name of the file is the slug used in the route.</p>
+			</div>
+			<div class="section">
+				<h2>Routing</h2>
 			</div>
 
 		</div>
+		<script src="js/prettify.js"></script>
+		<script>
+			prettyPrint();
+		</script>
 	</body>
 </html>
