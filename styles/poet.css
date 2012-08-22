@@ -53,6 +53,14 @@ a {
     margin: 0 auto;
 }
 
+.cartoon {
+    float: right;
+    background-image: url(../img/poet.png);
+    width: 300px;
+    height: 375px;
+    left: 0px;
+}
+
 pre {
     background-color: #333;
     border-radius: 15px;
