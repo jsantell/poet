@@ -46,4 +46,4 @@ Posts are constructed in markdown, prefixed by front matter via [YAML](https://g
 
 ### Development
 
-To run tests, ensure you have Mocha installed `npm install mocha -g` and from the project root run `make test`
+To run tests, run `npm test` from the project root to run the Mocha tests.
