@@ -35,6 +35,10 @@ a {
     color: #ff0077;
 }
 
+a h1, a h2 {
+    color: #fff;
+}
+
 .header h1 {
     float: left;
     margin: 0 0 5px 0;
