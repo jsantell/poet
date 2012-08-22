@@ -19,11 +19,20 @@ h2 {
     font-family: 'La Belle Aurore', cursive;
 }
 
+h3 {
+    font-size: 24px;
+    font-family: 'La Belle Aurore', cursive;
+}
+
 .header {
     color: #ddd;
     opacity: 0.9;
     height: 100px;
     background-image: url(dark_leather.png);
+}
+
+a {
+    color: #ff0077;
 }
 
 .header h1 {
@@ -47,5 +56,15 @@ h2 {
 pre {
     background-color: #333;
     border-radius: 15px;
-    padding: 15px;
+    width: 600px;
+    margin: 0 auto;
+    padding: 15px 15px 15px 80px;
+}
+
+ul.methods {
+    list-style: none;
+}
+
+ul.methods strong {
+    font-family: monospace;
 }
