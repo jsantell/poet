@@ -5,6 +5,8 @@ Poet has your code-blogging back. Renders markdown files as posts, tag it up wit
 
 View the source for [jsantell.com](https://github.com/jsantell/jsantell.com) to see an example of Poet in use.
 
+![The Node Poet](https://raw.github.com/jsantell/poet/gh-pages/img/poet.png)
+
 ### Installing
 
 * `npm install poet`
