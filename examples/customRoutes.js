@@ -3,7 +3,13 @@ var
   app      = module.exports = express.createServer(),
   poet     = require( '../lib/poet' )( app );
 
-poet.init();
+poet.init(function ( locals ) {
+  locals.postList.forEach(function ( post ) {
+    // We can iterate over each post and alter
+    // its properties, add new fields, custom
+    // preview formatter or format the dates
+  });
+});
 
 app.configure(function () {
   app.set( 'view engine', 'jade' );
