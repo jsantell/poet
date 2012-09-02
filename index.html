@@ -40,7 +40,7 @@ poet( app )
   .createCategoryRoute()
   .init();
 				</pre>
-				<p>You can also pass in some configuration options, and specify a callback in the <em>init</em> method once all your posts are loaded up. Below are the config defaults:</p>
+				<p>You can also pass in some configuration options, and specify a callback in the <em>init</em> method once all your posts are loaded up. All the locals/middleware functions and stores are passed into the init function for modification or use. Below are the config defaults:</p>
 				<pre>
 var
   express = require('express'),
@@ -56,8 +56,10 @@ poet( app, {
   .createPageRoute()
   .createTagRoute()
   .createCategoryRoute()
-  .init(function () {
-    // Some callback to run once everything is set up
+  .init(function ( locals ) {
+	// Some callback to run once everything is set up
+	// The core storage is passed in as an argument, where all
+	// the locals/middleware functions and stores can be altered
   });
 				</pre>
 			</div>
