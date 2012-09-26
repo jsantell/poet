@@ -7,7 +7,7 @@ var
   resMock = require( './helpers/routeMocks' ).res,
   request = require( 'supertest' );
 
-describe( 'Routes', function () {
+describe( 'Middleware', function () {
   it( 'should add the appropriate objects to the request object', function ( done ) {
     var
       app = express.createServer(),
