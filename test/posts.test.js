@@ -21,6 +21,7 @@ describe( 'Posts', function () {
         var posts = app._locals.postList;
         posts.should.have.length(3);
         posts[2].title.should.equal('Test Post One');
+        posts[2].slug.should.equal('test1');
         posts[2].tags.should.have.length(2);
         posts[2].tags.should.include('a');
         posts[2].tags.should.include('b');
@@ -54,6 +55,7 @@ describe( 'Posts', function () {
         var posts = app._locals.postList;
         posts.should.have.length(3);
         posts[2].title.should.equal('Test Post One');
+        posts[2].slug.should.equal('test1');
         posts[2].tags.should.have.length(2);
         posts[2].tags.should.include('a');
         posts[2].tags.should.include('b');
