@@ -4,7 +4,7 @@
   "version" : "0.1.2",
   "main" : "lib/poet",
   "dependencies" : {
-    "markdown"          : ">= 0.4.x",
+    "node-markdown"          : ">= 0.1.1",
     "json-front-matter" : ">= 0.1.x",
     "front-matter"      : ">= 0.0.x"
   },
