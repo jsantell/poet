@@ -1,7 +1,7 @@
 {
   "name" : "poet",
   "description" : "quick and easy markdown-based blog module",
-  "version" : "0.1.4",
+  "version" : "0.1.5",
   "main" : "lib/poet",
   "dependencies" : {
     "node-markdown"          : ">= 0.1.1",
