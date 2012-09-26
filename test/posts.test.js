@@ -6,7 +6,8 @@ var
 
 var
   postPreview = '<p><em>Lorem ipsum</em> dolor sit amet, consectetur adipisicing elit.</p>',
-  postBody    = '<p><em>Lorem ipsum</em> dolor sit amet, consectetur adipisicing elit.</p>\n\n<h1>Header 1</h1>';
+  postBody    = '<p><em>Lorem ipsum</em> dolor sit amet, consectetur adipisicing elit.</p>\n\n<h1>Header 1</h1>',
+  scriptBody  = '<script>console.log(\'test\');</script>';
 
 describe( 'Posts', function () {
   describe( 'Posts with JSON front-matter', function () {
@@ -72,6 +73,16 @@ describe( 'Posts', function () {
         posts[0].preview.should.equal( '<p><em>some content</em></p>' );
 
         done();
+      });
+    });
+  });
+
+  describe( 'Markdown parsing', function () {
+    it( 'should not strip out HTML elements', function () {
+      var app = express.createServer(), poet = require( '../lib/poet' )( app );
+      poet.set({ posts: './test/_postsJson', metaFormat: 'json' }).init(function () {
+        var posts = app._locals.postList;
+        posts[1].content.should.contain( scriptBody );
       });
     });
   });

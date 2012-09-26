@@ -9,6 +9,10 @@
 
 dancer.js is a high-level audio API, usable with both Mozilla's Audio Data API and Webkit's Web Audio API with flash fallback, designed to make sweet visualizations.
 
+<script>
+  console.log('this is a script parse test');
+</script>
+
 http://jsantell.github.com/dancer.js
 
 _v0.2.1 (6/15/2012)_
