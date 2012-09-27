@@ -1,4 +1,7 @@
-- each post in posts
-  include includes/postSnippet
+extends layout
 
-include includes/pagination
+block content
+  - each post in posts
+    include includes/postSnippet
+
+  include includes/pagination

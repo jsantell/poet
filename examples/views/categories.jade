@@ -1,5 +1,8 @@
-h1 All Categories
-ul
-  - each cat in categoryList
-    li
-      a(href=categoryUrl(cat)) #{cat}
+extends layout
+
+block content
+  h1 All Categories
+  ul
+    - each cat in categoryList
+      li
+        a(href=categoryUrl(cat)) #{cat}

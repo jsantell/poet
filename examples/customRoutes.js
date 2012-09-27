@@ -1,6 +1,6 @@
 var
   express  = require( 'express' ),
-  app      = module.exports = express.createServer(),
+  app      = express(),
   poet     = require( '../lib/poet' )( app );
 
 poet.init(function ( locals ) {
@@ -11,13 +11,11 @@ poet.init(function ( locals ) {
   });
 });
 
-app.configure(function () {
-  app.set( 'view engine', 'jade' );
-  app.set( 'views', __dirname + '/views' );
-  app.use( express.static( __dirname + '/public' ));
-  app.use( poet.middleware() );
-  app.use( app.router );
-});
+app.set( 'view engine', 'jade' );
+app.set( 'views', __dirname + '/views' );
+app.use( express.static( __dirname + '/public' ));
+app.use( poet.middleware() );
+app.use( app.router );
 
 app.get( '/post/:post', function ( req, res ) {
   var post = req.poet.getPost( req.params.post );

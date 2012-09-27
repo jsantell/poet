@@ -21,8 +21,8 @@ Include Poet in your package.json and add it to your app, passing in your Expres
 ```javascript
 var
   express = require('express'),
-  poet    = require('poet'),
-  app     = express.createServer();
+  app     = express(),
+  poet    = require('poet');
 
 poet( app, {
   posts: './_posts/',
