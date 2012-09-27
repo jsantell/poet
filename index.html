@@ -30,8 +30,8 @@
 				<pre>
 var
   express = require('express'),
-  poet    = require('poet'),
-  app     = express.createServer();
+  app     = express(),
+  poet    = require('poet');
 
 poet( app )
   .createPostRoute()
@@ -44,8 +44,8 @@ poet( app )
 				<pre>
 var
   express = require('express'),
-  poet    = require('poet'),
-  app     = express.createServer();
+  app     = express(),
+  poet    = require('poet');
 
 poet( app, {
   posts: './_posts/',  // Directory of posts
@@ -139,11 +139,9 @@ Blawg blawg blawg blawg.
 				<h2 id="middleware">Middleware</h2>
 				<p>You can also use all the non-page specific locals in your routes, especially useful when defining your own custom routes. Use the <em>middleware</em> method when setting up your express app like so:</p>
 				<pre>
-app.configure(function () {
-  app.use( express.static( __dirname + '/public' ));
-  app.use( poet.middleware() );
-  app.use( app.router );
-});
+app.use( express.static( __dirname + '/public' ));
+app.use( poet.middleware() );
+app.use( app.router );
 				</pre>
 				<p>This exposes all the locals to the <em>request</em> object under the <em>poet</em> namespace.</p>
 				<p>Also check out the <a href="https://github.com/jsantell/poet/blob/master/examples/customRoutes.js" title="custom routes">custom routes example</a> to see an example of attaching the middleware and using the locals in routes.</p>
