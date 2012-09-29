@@ -44,7 +44,7 @@ poet( app, {
 
 ### Posts
 
-Posts are constructed in markdown, jade, or any templated language of your choice (read [docs](http://jsantell.github.com/poet), prefixed by front matter via [YAML](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) or [JSON](https://github.com/jsantell/node-json-front-matter). All attributes are stored into the post object.
+Posts are constructed in markdown, jade, or any templated language of your choice (read [docs](http://jsantell.github.com/poet#format)), prefixed by front matter via [YAML](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) or [JSON](https://github.com/jsantell/node-json-front-matter). All attributes are stored into the post object.
 
 ### Development
 
