@@ -12,7 +12,7 @@ describe( 'Init', function () {
 
     poet.set({ posts: './test/_postsJson' }).init(function ( core ) {
       core.getPosts.should.exist;
-      core.postList.should.have.length(3);
+      core.postList.should.have.length(4);
       core.tagList.should.have.length(4);
       done();
     });
