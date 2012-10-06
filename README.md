@@ -9,7 +9,7 @@ View the source for [jsantell.com](https://github.com/jsantell/jsantell.com) to 
 
 ### Documentation
 
-Full documentation for *Poet* can be found at [jsantell.github.com/poet](https://github.com/jsantell/poet)
+Full documentation for *Poet* can be found at [jsantell.github.com/poet](https://jsantell.github.com/poet)
 
 ### Installing
 
