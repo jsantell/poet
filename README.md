@@ -30,7 +30,7 @@ poet( app, {
   metaFormat: 'json'
 })
   .createPostRoute()
-  .createPostListRoute()
+  .createPageRoute()
   .createTagRoute()
   .createCategoryRoute()
   .init();
@@ -40,7 +40,7 @@ poet( app, {
 
 * `posts` path to directory of your files of posts (default: `./\_posts/`)
 * `metaFormat` format of your front matter on every blog post. Can be `yaml` or `json`. (default: `json`)
-* `postsPerPage` How many posts are displayed per page in the post list
+* `postsPerPage` How many posts are displayed per page in the page route
 
 ### Posts
 
