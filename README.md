@@ -7,6 +7,13 @@ View the source for [jsantell.com](https://github.com/jsantell/jsantell.com) to 
 
 ![The Node Poet](https://raw.github.com/jsantell/poet/gh-pages/img/poet.png)
 
+### Poet In Action
+
+These sites are using Poet for their blogging, check them out! Ping me, or send a PR if you too are using Poet in the wild.
+
+* [Yellow Pages Engineering](http://engineering.yp.com/)
+* [BryanPaluch.com](http://bryanpaluch.com)
+
 ### Documentation
 
 Full documentation for *Poet* can be found at [jsantell.github.com/poet](https://jsantell.github.com/poet)
