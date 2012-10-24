@@ -48,6 +48,7 @@ poet( app, {
 * `posts` path to directory of your files of posts (default: `./\_posts/`)
 * `metaFormat` format of your front matter on every blog post. Can be `yaml` or `json`. (default: `json`)
 * `postsPerPage` How many posts are displayed per page in the page route
+* `readMore` A function taking the post object as the only parameter, returning a string that is appended to the post's preview value. By default will be a function returning `<a href="{post.link}">{post.title}</a>`
 
 ### Posts
 
