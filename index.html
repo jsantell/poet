@@ -50,16 +50,24 @@ var
 poet( app, {
   posts: './_posts/',  // Directory of posts
   postsPerPage: 5,     // Posts per page in pagination
-  metaFormat: 'json'   // meta formatter for posts
+  metaFormat: 'json',  // meta formatter for posts
+  readMore: function (post) {
+    // readMore is a function that
+    // takes the post object and formats an anchor
+    // to be used to append to a post's preview blurb
+    // and returns the anchor text string
+    return s;
+  }
 })
   .createPostRoute()
   .createPageRoute()
   .createTagRoute()
   .createCategoryRoute()
   .init(function ( locals ) {
-	// Some callback to run once everything is set up
-	// The core storage is passed in as an argument, where all
-	// the locals/middleware functions and stores can be altered
+    // Some callback to run once everything is set up
+    // The core storage is passed in as an argument,
+    // where all the locals/middleware functions
+    //and stores can be altered
   });
 				</pre>
 			</div>
@@ -137,6 +145,7 @@ poet()
 					<li><strong>post.url</strong> - The url of the post</li>
 					<li><strong>post.content</strong> - The body of the post</li>
 					<li><strong>post.preview</strong> - If a preview property was used in the front-matter, this will be the markdown formatted preview -- otherwise, it's the body of the post up to the first new line character</li>
+					<li><strong>post.previewLength</strong> -- if no preview property is used, you may opt to use a previewLength property instead, which trims the post's content by that many characters (pre-templating)</li>
 				</ul>
 
 				<h3>Page Locals</h3>
