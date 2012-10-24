@@ -2,7 +2,8 @@
   "title" : "Test Post Three",
   "tags" : [ "d" ],
   "category" : "other cat",
-  "date" : "7-12-2012"
+  "date" : "7-12-2012",
+  "previewLength" : 28
 }}}
 
 *Lorem ipsum* dolor sit amet, consectetur adipisicing elit.

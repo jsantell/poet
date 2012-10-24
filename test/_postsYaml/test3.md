@@ -6,6 +6,7 @@ tags:
   - c
 category: other cat
 date: 7-12-2012
+previewLength: 28
 ---
 
 *Lorem ipsum* dolor sit amet, consectetur adipisicing elit.
