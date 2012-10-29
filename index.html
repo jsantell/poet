@@ -51,13 +51,14 @@ poet.set({
   posts: './_posts/',  // Directory of posts
   postsPerPage: 5,     // Posts per page in pagination
   metaFormat: 'json',  // meta formatter for posts
-  readMore: function (post) {
-    // readMore is a function that
+  readMoreLink: function (post) {
+    // readMoreLink is a function that
     // takes the post object and formats an anchor
     // to be used to append to a post's preview blurb
     // and returns the anchor text string
-    return s;
-  }
+  },
+  readMoreTag: '&lt;!--more--&gt;' // tag used to generate
+  // the preview. More in 'preview' section
 })
   .createPostRoute()
   .createPageRoute()
@@ -86,6 +87,12 @@ Here goes the content that belongs to the blog post.
 Blawg blawg blawg blawg.
 				</pre>
 				<p>With autoroutes, the name of the file is the slug used in the route.</p>
+			</div>
+			<div class="section">
+				<h2 id="preview">Specifying Post Previews</h2>
+				<p>There are several ways of specifying the text of your post preview. First is through a <em>preview</em> property on your post, which is the text that will run through your template and appear as the preview. Second is a <em>previewLength</em> property on a post, which will take the first <em>n</em> characters of your post (preformatted) and run it through the template, becoming your preview. Third, and easiest most likely, is specfiying a <em>readMoreTag</em> option during set up, which by default is <em>&lt;!--more--&gt;</em>. Whenever the readMoreTag is found in the post, anything before becomes the preview. You can set this in your options, or specify a <em>readMoreTag</em> property for each post individually.
+				</p>
+				<p>The above is the order that <strong>Poet</strong> checks for when generating the post previews.</p>
 			</div>
 			<div class="section">
 				<h2 id="format">Format Of Your Choice</h2>
@@ -144,7 +151,7 @@ poet
 				<ul class="methods">
 					<li><strong>post.url</strong> - The url of the post</li>
 					<li><strong>post.content</strong> - The body of the post</li>
-					<li><strong>post.preview</strong> - If a preview property was used in the front-matter, this will be the markdown formatted preview -- otherwise, it's the body of the post up to the first new line character</li>
+					<li><strong>post.preview</strong> - If a preview property was generated using the methods specified in the <a href="#preview">preview</a> section, then that will be used -- otherwise, the preview property is the body of the post up to the first new line character</li>
 					<li><strong>post.previewLength</strong> -- if no preview property is used, you may opt to use a previewLength property instead, which trims the post's content by that many characters (pre-templating)</li>
 				</ul>
 
