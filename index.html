@@ -31,9 +31,9 @@
 var
   express = require('express'),
   app     = express(),
-  poet    = require('poet');
+  poet    = require('poet')( app );
 
-poet( app )
+poet
   .createPostRoute()
   .createPageRoute()
   .createTagRoute()
@@ -45,9 +45,9 @@ poet( app )
 var
   express = require('express'),
   app     = express(),
-  poet    = require('poet');
+  poet    = require('poet')( app );
 
-poet( app, {
+poet.set({
   posts: './_posts/',  // Directory of posts
   postsPerPage: 5,     // Posts per page in pagination
   metaFormat: 'json',  // meta formatter for posts
@@ -97,7 +97,7 @@ var
   yaml    = require('yaml'),
   poet    = require('poet')( app );
 
-poet()
+poet
   .addTemplate({
     ext: 'yaml',
     fn : function ( s ) { return yaml.eval( s ); }
