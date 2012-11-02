@@ -53,6 +53,11 @@ describe( 'Options', function () {
         readMoreTag: '!!!more!!!'
       }).init(function ( core ) {
         var posts = app._locals.postList;
+        console.log(posts[0].date);
+        console.log(posts[1].date);
+        console.log(posts[2].date);
+        console.log(posts[3].date);
+        console.log(posts[4].date);
         posts[4].preview.should.equal( customPreview );
         done();
       });
