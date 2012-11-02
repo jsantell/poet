@@ -20,7 +20,7 @@
     "url" : "http://github.com/jsantell/poet"
   },
   "scripts" : {
-    "test" : "mocha --reporter nyan"
+    "test" : "./node_modules/.bin/mocha --reporter nyan --ui bdd"
   },
   "keywords" : [
     "blog",
