@@ -39,7 +39,9 @@ describe( 'Options', function () {
         posts: './test/_postsJson'
       }).init(function ( core ) {
         var posts = app._locals.postList;
-        posts[4].preview.should.equal( defaultPreview );
+        var s = '';
+        posts.forEach(function(p){s+=p.title+'+'+p.date+':'});
+        posts[4].preview.should.equal( defaultPreview, s );
         done();
       });
     });
@@ -53,12 +55,9 @@ describe( 'Options', function () {
         readMoreTag: '!!!more!!!'
       }).init(function ( core ) {
         var posts = app._locals.postList;
-        console.log(posts[0].date);
-        console.log(posts[1].date);
-        console.log(posts[2].date);
-        console.log(posts[3].date);
-        console.log(posts[4].date);
-        posts[4].preview.should.equal( customPreview );
+        var s = '';
+        posts.forEach(function(p){s+=p.title+'+'+p.date+':'});
+        posts[4].preview.should.equal( customPreview, s);
         done();
       });
     });

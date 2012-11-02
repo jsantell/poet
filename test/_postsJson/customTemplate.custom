@@ -1,8 +1,6 @@
 {{{
-  "title" : "Jade Test",
-  "tags" : [ "a", "b" ],
-  "category" : "testing",
-  "date" : "7-10-2010",
+  "title" : "Custom Test",
+  "date" : "7-9-2010",
   "arbitrary" : "arbitrary content"
 }}}
 
