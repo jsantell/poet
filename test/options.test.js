@@ -28,8 +28,8 @@ describe( 'Options', function () {
   });
 
   describe( 'readMoreTag', function () {
-    var customPreview = '<p><em>Lorem ipsum</em></p><p><a href="/post/readMore" title="Read more of read more test">read more</a></p>',
-      defaultPreview = '<p><em>Lorem ipsum</em>\n!!!more!!!\n<em>more ipsum</em></p><p><a href="/post/readMore" title="Read more of read more test">read more</a></p>';
+    var customPreview = '<p><em>Lorem ipsum</em></p><p><a href="/post/readMore" title="Read more of Read More Test">read more</a></p>',
+      defaultPreview = '<p><em>Lorem ipsum</em>\n!!!more!!!\n<em>more ipsum</em></p><p><a href="/post/readMore" title="Read more of Read More Test">read more</a></p>';
     it( 'should by default use <!--more-->', function ( done ) {
       var
         app = express.createServer(),

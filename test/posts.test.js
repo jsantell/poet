@@ -22,7 +22,6 @@ describe( 'Posts', function () {
       poet.set({ posts: './test/_postsJson' }).init(function () {
         var posts = app._locals.postList;
         posts.should.have.length(5);
-        posts[2].title.should.equal('Test Post One');
         posts[2].slug.should.equal('test1');
         posts[2].tags.should.have.length(2);
         posts[2].tags.should.include('a');
@@ -36,6 +35,9 @@ describe( 'Posts', function () {
         posts[2].content.should.equal( postBody );
 
         // All posts should be in order
+        posts[4].title.should.equal('Read More Test');
+        posts[3].title.should.equal('Jade Test');
+        posts[2].title.should.equal('Test Post One');
         posts[1].title.should.equal('Test Post Three');
         posts[0].title.should.equal('Test Post Two');
 

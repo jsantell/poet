@@ -12,10 +12,10 @@ describe( 'core.postWithTag()', function () {
 
     poet.set({ posts: './test/_postsJson' }).init(function ( core ) {
       var posts = core.postsWithTag('a');
-      
+
       (posts[0].date.getTime() > posts[1].date.getTime()).should.equal(true);
       (posts[1].date.getTime() > posts[2].date.getTime()).should.equal(true);
-      
+
       done();
     });
   });
@@ -29,10 +29,10 @@ describe( 'core.postWithCategories()', function () {
 
     poet.set({ posts: './test/_postsJson' }).init(function ( core ) {
       var posts = core.postsWithCategory('testing');
-      
+
       (posts[0].date.getTime() > posts[1].date.getTime()).should.equal(true);
       (posts[1].date.getTime() > posts[2].date.getTime()).should.equal(true);
-      
+
       done();
     });
   });

@@ -1,5 +1,5 @@
 {{{
-  "title" : "read more test",
+  "title" : "Read More Test",
   "date" : "1-1-2009"
 }}}
 
