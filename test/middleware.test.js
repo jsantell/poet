@@ -17,7 +17,7 @@ describe( 'Middleware', function () {
       // Test a few properties of response
       request( app ).get( '/' ).expect({
         tagList : [ 'a', 'b', 'c', 'd' ],
-        categoryList: [ 'testing', 'other cat' ]
+        categoryList: [ 'other cat', 'testing' ]
       }, done );
     });
     
