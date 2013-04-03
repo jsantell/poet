@@ -6,6 +6,7 @@
   "dependencies":
   {
     "express":          ">= 3.0.0rc5",
-    "jade" :            ">= 0.20.3"
+    "jade" :            ">= 0.20.3",
+    "html-to-text" :    ">= 0.0.6"
   }
 }
