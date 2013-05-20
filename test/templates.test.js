@@ -11,11 +11,11 @@ var scriptBody  = '<script>console.log(\'test\');</script>';
 describe( 'Templating', function () {
   it( 'should correctly compile markdown', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app );
 
     poet.set({ posts: './test/_postsJson' }).init(function () {
-      var posts = app._locals.postList;
+      var posts = app.locals.postList;
       posts[2].content.should.contain(pEl);
       posts[2].content.should.contain(h1El);
       done();
@@ -24,11 +24,11 @@ describe( 'Templating', function () {
   
   it( 'should correctly compile jade', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app );
 
     poet.set({ posts: './test/_postsJson' }).init(function () {
-      var posts = app._locals.postList;
+      var posts = app.locals.postList;
       posts[3].content.should.contain(pEl);
       posts[3].content.should.contain(h1El);
       done();
@@ -37,7 +37,7 @@ describe( 'Templating', function () {
 
   it( 'should correctly render with any custom formatter', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app );
 
     poet.set({ posts: './test/_postsJson' })
@@ -48,7 +48,7 @@ describe( 'Templating', function () {
           return s;
         }
       }).init(function () {
-      var posts = app._locals.postList;
+      var posts = app.locals.postList;
       posts[4].content.should.contain(pEl);
       posts[4].content.should.contain(h1El);
       done();
@@ -57,9 +57,12 @@ describe( 'Templating', function () {
 
   describe( 'Markdown parsing', function () {
     it( 'should not strip out HTML elements', function () {
-      var app = express.createServer(), poet = require( '../lib/poet' )( app );
+      var
+        app = express(),
+        poet = require( '../lib/poet' )( app );
+
       poet.set({ posts: './test/_postsJson', metaFormat: 'json' }).init(function () {
-        var posts = app._locals.postList;
+        var posts = app.locals.postList;
         posts[1].content.should.contain( scriptBody );
       });
     });

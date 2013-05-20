@@ -5,12 +5,13 @@ var
   expect  = chai.expect,
   routes  = require( '../lib/poet/routes' )(),
   reqMock = require( './helpers/routeMocks' ).req,
-  resMock = require( './helpers/routeMocks' ).res;
+  resMock = require( './helpers/routeMocks' ).res,
+  routeInfo = require( './helpers/routeInfo' );
 
 describe( 'Routes', function () {
   it( 'should make the correct auto routes by default', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app );
 
     poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
@@ -19,13 +20,13 @@ describe( 'Routes', function () {
       .createTagRoute()
       .createCategoryRoute()
       .init(function () {
-        app.lookup.get('/post/:post')[0].callbacks[0]
+        routeInfo.getCallback( app, '/post/:post' )
           .toString().should.equal( routes.post().toString() );
-        app.lookup.get('/page/:page')[0].callbacks[0]
+        routeInfo.getCallback( app, '/page/:page' )
           .toString().should.equal( routes.page().toString() );
-        app.lookup.get('/tag/:tag')[0].callbacks[0]
+        routeInfo.getCallback( app, '/tag/:tag' )
           .toString().should.equal( routes.tag().toString() );
-        app.lookup.get('/category/:category')[0].callbacks[0]
+        routeInfo.getCallback( app, '/category/:category' )
           .toString().should.equal( routes.category().toString() );
         done();
       });
@@ -33,7 +34,7 @@ describe( 'Routes', function () {
 
   it( 'should use the default views', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app ),
       reqPost = reqMock({ post: 'test1'}),
       reqPage = reqMock({ page: 1}),
@@ -69,16 +70,16 @@ describe( 'Routes', function () {
       .createTagRoute()
       .createCategoryRoute()
         .init(function () {
-        app.lookup.get('/post/:post')[0].callbacks[0]( reqPost, resPost );
-        app.lookup.get('/page/:page')[0].callbacks[0]( reqPage, resPage );
-        app.lookup.get('/tag/:tag')[0].callbacks[0]( reqTag, resTag );
-        app.lookup.get('/category/:category')[0].callbacks[0]( reqCategory, resCategory );
+          routeInfo.getCallback( app, '/post/:post' )( reqPost, resPost );
+          routeInfo.getCallback( app, '/page/:page' )( reqPage, resPage );
+          routeInfo.getCallback( app, '/tag/:tag' )( reqTag, resTag );
+          routeInfo.getCallback( app, '/category/:category' )( reqCategory, resCategory );
       });
   });
 
   it( 'should allow configurable routes in the generator', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app );
 
     poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
@@ -87,13 +88,13 @@ describe( 'Routes', function () {
       .createTagRoute( '/mytags/:tag', 'tag' )
       .createCategoryRoute( '/mycats/:category', 'category' )
       .init(function () {
-        app.lookup.get('/myposts/:post')[0].callbacks[0]
+        routeInfo.getCallback( app, '/myposts/:post' )
           .toString().should.equal( routes.post().toString() );
-        app.lookup.get('/pagesss/:page')[0].callbacks[0]
+        routeInfo.getCallback( app, '/pagesss/:page' )
           .toString().should.equal( routes.page().toString() );
-        app.lookup.get('/mytags/:tag')[0].callbacks[0]
+        routeInfo.getCallback( app, '/mytags/:tag' )
           .toString().should.equal( routes.tag().toString() );
-        app.lookup.get('/mycats/:category')[0].callbacks[0]
+        routeInfo.getCallback( app, '/mycats/:category' )
           .toString().should.equal( routes.category().toString() );
         done();
       });
@@ -101,7 +102,7 @@ describe( 'Routes', function () {
   
   it( 'should use configurable views', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app ),
       reqPost = reqMock({ post: 'test1'}),
       reqPage = reqMock({ page: 1}),
@@ -137,10 +138,10 @@ describe( 'Routes', function () {
       .createTagRoute( '/mytags/:tag', 'tagView' )
       .createCategoryRoute( '/mycats/:category', 'categoryView' )
       .init(function () {
-        app.lookup.get('/myposts/:post')[0].callbacks[0]( reqPost, resPost );
-        app.lookup.get('/postlist/:page')[0].callbacks[0]( reqPage, resPage );
-        app.lookup.get('/mytags/:tag')[0].callbacks[0]( reqTag, resTag );
-        app.lookup.get('/mycats/:category')[0].callbacks[0]( reqCategory, resCategory );
+        routeInfo.getCallback( app, '/myposts/:post' )( reqPost, resPost );
+        routeInfo.getCallback( app, '/postlist/:page' )( reqPage, resPage );
+        routeInfo.getCallback( app, '/mytags/:tag' )( reqTag, resTag );
+        routeInfo.getCallback( app, '/mycats/:category' )( reqCategory, resCategory );
       });
   });
 });

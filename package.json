@@ -4,7 +4,7 @@
   "version" : "0.2.7",
   "main" : "lib/poet",
   "dependencies" : {
-    "node-markdown"     : ">= 0.1.1",
+    "marked"     : ">= 0.2.8",
     "jade"              : ">= 0.27.1",
     "json-front-matter" : ">= 0.1.x",
     "front-matter"      : ">= 0.1.x"
@@ -13,7 +13,7 @@
     "mocha"     : ">= 1.3.2",
     "chai"      : ">= 1.1.1",
     "supertest" : ">= 0.0.1",
-    "express"   : "= 2.5.11"
+    "express"   : "= 3.2.4"
   },
   "repository" : {
     "type" : "git",
@@ -35,5 +35,5 @@
     "url" : "http://github.com/jsantell"
   },
   "license" : "MIT",
-  "engines" : ["node >= 0.6.12"]
+  "engines" : ["node >= 0.10.2"]
 }
