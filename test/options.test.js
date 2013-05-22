@@ -11,7 +11,7 @@ describe( 'Options', function () {
   describe( 'readMoreLink', function () {
     it( 'should be a function that returns markup appended to the preview', function ( done ) {
       var
-        app = express.createServer(),
+        app = express(),
         poet = require( '../lib/poet' )( app );
 
       poet.set({
@@ -20,25 +20,25 @@ describe( 'Options', function () {
           return '<a href="'+post.url+'">'+post.title+'</a>';
         }
       }).init(function ( core ) {
-        var posts = app._locals.postList;
-        posts[0].preview.should.equal( '<p><em>some content</em></p>' + readMoreLink );
+        var posts = app.locals.postList;
+        posts[0].preview.should.equal( '<p><em>some content</em></p>' + "\n" + readMoreLink );
         done();
       });
     });
   });
 
   describe( 'readMoreTag', function () {
-    var customPreview = '<p><em>Lorem ipsum</em></p><p><a href="/post/readMore" title="Read more of Read More Test">read more</a></p>',
-      defaultPreview = '<p><em>Lorem ipsum</em>\n!!!more!!!\n<em>more ipsum</em></p><p><a href="/post/readMore" title="Read more of Read More Test">read more</a></p>';
+    var customPreview = '<p><em>Lorem ipsum</em></p>\n<p><a href="/post/readMore" title="Read more of Read More Test">read more</a></p>',
+      defaultPreview = '<p><em>Lorem ipsum</em>\n!!!more!!!\n<em>more ipsum</em></p>\n<p><a href="/post/readMore" title="Read more of Read More Test">read more</a></p>';
     it( 'should by default use <!--more-->', function ( done ) {
       var
-        app = express.createServer(),
+        app = express(),
         poet = require( '../lib/poet' )( app );
 
       poet.set({
         posts: './test/_postsJson'
       }).init(function ( core ) {
-        var posts = app._locals.postList;
+        var posts = app.locals.postList;
         var s = '';
         posts.forEach(function(p){s+=p.title+'+'+p.date+':'});
         posts[4].preview.should.equal( defaultPreview, s );
@@ -47,14 +47,14 @@ describe( 'Options', function () {
     });
     it( 'should be an option that specifies where the preview is cut off', function ( done ) {
       var
-        app = express.createServer(),
+        app = express(),
         poet = require( '../lib/poet' )( app );
 
       poet.set({
         posts: './test/_postsJson',
         readMoreTag: '!!!more!!!'
       }).init(function ( core ) {
-        var posts = app._locals.postList;
+        var posts = app.locals.postList;
         var s = '';
         posts.forEach(function(p){s+=p.title+'+'+p.date+':'});
         posts[4].preview.should.equal( customPreview, s);

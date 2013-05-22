@@ -10,7 +10,7 @@ var
 describe( 'Middleware', function () {
   it( 'should add the appropriate objects to the request object', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app );
 
     poet.set({ posts: './test/_postsJson', metaFormat: 'json' }).init(function () {

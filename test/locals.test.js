@@ -7,23 +7,23 @@ var
 describe( 'Locals', function () {
   it( 'should pass in the locals for the view', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app );
 
     poet.set({ posts: './test/_postsYaml', metaFormat: 'yaml' }).init(function () {
-      app._locals.getPostCount().should.equal(3);
-      app._locals.postList.should.have.length(3);
-      app._locals.tagList.should.include('a');
-      app._locals.tagList.should.include('b');
-      app._locals.tagList.should.include('c');
-      app._locals.tagList.should.include('d');
-      app._locals.categoryList.should.include('testing');
-      app._locals.categoryList.should.include('other cat');
-      app._locals.pageUrl(3).should.equal('/page/3');
-      app._locals.tagUrl('sometag').should.equal('/tag/sometag');
-      app._locals.categoryUrl('somecat').should.equal('/category/somecat');
-      app._locals.getPosts(2,3).should.have.length(1);
-      app._locals.getPageCount().should.equal(1);
+      app.locals.getPostCount().should.equal(3);
+      app.locals.postList.should.have.length(3);
+      app.locals.tagList.should.include('a');
+      app.locals.tagList.should.include('b');
+      app.locals.tagList.should.include('c');
+      app.locals.tagList.should.include('d');
+      app.locals.categoryList.should.include('testing');
+      app.locals.categoryList.should.include('other cat');
+      app.locals.pageUrl(3).should.equal('/page/3');
+      app.locals.tagUrl('sometag').should.equal('/tag/sometag');
+      app.locals.categoryUrl('somecat').should.equal('/category/somecat');
+      app.locals.getPosts(2,3).should.have.length(1);
+      app.locals.getPageCount().should.equal(1);
       done();
     });
   });
