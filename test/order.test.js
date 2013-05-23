@@ -7,7 +7,7 @@ var
 describe( 'core.postWithTag()', function () {
   it( 'should return posts ordered by date, newest first', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app );
 
     poet.set({ posts: './test/_postsJson' }).init(function ( core ) {
@@ -24,7 +24,7 @@ describe( 'core.postWithTag()', function () {
 describe( 'core.postWithCategories()', function () {
   it( 'should return posts ordered by date, newest first', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app );
 
     poet.set({ posts: './test/_postsJson' }).init(function ( core ) {

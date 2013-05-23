@@ -7,7 +7,7 @@ var
 describe( 'Init', function () {
   it( 'should pass in core functions to init callback', function ( done ) {
     var
-      app = express.createServer(),
+      app = express(),
       poet = require( '../lib/poet' )( app );
 
     poet.set({ posts: './test/_postsJson' }).init(function ( core ) {
