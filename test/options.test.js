@@ -62,4 +62,44 @@ describe( 'Options', function () {
       });
     });
   });
+  
+  describe( 'showDrafts', function () {
+    it( 'should include drafts when true', function ( done ) {
+      var
+        app = express.createServer(),
+        poet = require( '../lib/poet' )( app );
+
+      poet.set({
+        posts: './test/_postsJson',
+        showDrafts: true
+      }).init(function ( core ) {
+        var posts = app.locals.getPosts();
+        posts.should.have.length(6);
+        var postCount = app.locals.getPostCount();
+        postCount.should.equal(6);
+        done();
+      });
+    });
+    it( 'should ignore drafts when false', function ( done ) {
+      var
+        app = express.createServer(),
+        poet = require( '../lib/poet' )( app );
+
+      poet.set({
+        posts: './test/_postsJson',
+        showDrafts: false
+      }).init(function ( core ) {
+        var posts = app.locals.getPosts();
+        posts.should.have.length(5);
+        posts.forEach( function ( p ) {
+          if ( p.draft ) {
+            should.fail( 'Unexpected draft included in getPosts() result' );
+          }
+        });
+        var postCount = app.locals.getPostCount();
+        postCount.should.equal(5);
+        done();
+      });
+    });
+  });
 });
