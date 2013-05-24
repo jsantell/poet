@@ -21,7 +21,7 @@ describe( 'Posts', function () {
       // Should default to json
       poet.set({ posts: './test/_postsJson' }).init(function () {
         var posts = app.locals.postList;
-        posts.should.have.length(5);
+        posts.should.have.length(6);
         posts[2].slug.should.equal('test1');
         posts[2].tags.should.have.length(2);
         posts[2].tags.should.include('a');
@@ -43,6 +43,7 @@ describe( 'Posts', function () {
 
         // Preview parameter should work and turn into html
         posts[0].preview.should.equal( '<p><em>some content</em></p>' + "\n" + readMoreAnchorp2 );
+        posts[0].rssPreview.should.equal( 'some content');
 
         done();
       });
@@ -89,6 +90,7 @@ describe( 'Posts', function () {
 
         // Preview parameter should work and turn into html
         posts[0].preview.should.equal( '<p><em>some content</em></p>' + "\n" + readMoreAnchorp2);
+        posts[0].rssPreview.should.equal( 'some content');
 
         done();
       });
