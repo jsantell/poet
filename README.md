@@ -18,6 +18,7 @@ These sites are using Poet for their blogging, check them out! Ping me, or send 
 * [Yellow Pages Engineering](http://engineering.yp.com/)
 * [BryanPaluch.com](http://bryanpaluch.com)
 * [EffectiveIdea.com](http://effectiveidea.com)
+* [fictitious entry](http://fictitiousentry.com/)
 
 ## Installing
 
