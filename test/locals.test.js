@@ -10,9 +10,13 @@ describe( 'Locals', function () {
       app = express(),
       poet = require( '../lib/poet' )( app );
 
-    poet.set({ posts: './test/_postsYaml', metaFormat: 'yaml' }).init(function () {
-      app.locals.getPostCount().should.equal(3);
-      app.locals.postList.should.have.length(3);
+    poet.set({ 
+      posts: './test/_postsYaml',
+      metaFormat: 'yaml',
+      showDrafts: true
+    }).init(function () {
+      app.locals.getPostCount().should.equal(4);
+      app.locals.postList.should.have.length(4);
       app.locals.tagList.should.include('a');
       app.locals.tagList.should.include('b');
       app.locals.tagList.should.include('c');

@@ -19,9 +19,12 @@ describe( 'Posts', function () {
         poet = require( '../lib/poet' )( app );
 
       // Should default to json
-      poet.set({ posts: './test/_postsJson' }).init(function () {
+      poet.set({ 
+        posts: './test/_postsJson',
+        showDrafts: true
+      }).init(function () {
         var posts = app.locals.postList;
-        posts.should.have.length(5);
+        posts.should.have.length(6);
         posts[2].slug.should.equal('test1');
         posts[2].tags.should.have.length(2);
         posts[2].tags.should.include('a');
@@ -35,11 +38,15 @@ describe( 'Posts', function () {
         posts[2].content.should.equal( postBody );
 
         // All posts should be in order
+        posts[5].title.should.equals('Test Post Four - A Draft');
         posts[4].title.should.equal('Read More Test');
         posts[3].title.should.equal('Jade Test');
         posts[2].title.should.equal('Test Post One');
         posts[1].title.should.equal('Test Post Three');
         posts[0].title.should.equal('Test Post Two');
+        
+        // One test post is a draft
+        posts[5].draft.should.equal(true);
 
         // Preview parameter should work and turn into html
         posts[0].preview.should.equal( '<p><em>some content</em></p>' + "\n" + readMoreAnchorp2 );
@@ -67,9 +74,13 @@ describe( 'Posts', function () {
         app = express(),
         poet = require( '../lib/poet' )( app );
 
-      poet.set({ posts: './test/_postsYaml', metaFormat: 'yaml' }).init(function () {
+      poet.set({ 
+        posts: './test/_postsYaml',
+        metaFormat: 'yaml',
+        showDrafts: true
+      }).init(function () {
         var posts = app.locals.postList;
-        posts.should.have.length(3);
+        posts.should.have.length(4);
         posts[2].title.should.equal('Test Post One');
         posts[2].slug.should.equal('test1');
         posts[2].tags.should.have.length(2);
@@ -84,6 +95,7 @@ describe( 'Posts', function () {
         posts[2].content.should.equal( postBody );
 
         // All posts should be in order
+        posts[3].title.should.equal('Test Post Four - A Draft');
         posts[1].title.should.equal('Test Post Three');
         posts[0].title.should.equal('Test Post Two');
 
