@@ -19,6 +19,7 @@ These sites are using Poet for their blogging, check them out! Ping me, or send 
 * [BryanPaluch.com](http://bryanpaluch.com)
 * [EffectiveIdea.com](http://effectiveidea.com)
 * [fictitious entry](http://fictitiousentry.com/)
+* [AndreasKlein.org](http://v7.andreasklein.org)
 
 ## Installing
 
