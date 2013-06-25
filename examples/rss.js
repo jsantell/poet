@@ -1,7 +1,6 @@
 var
   express   = require( 'express' ),
   app       = express(),
-  html2text = require( 'html-to-text'),
   poet      = require( '../lib/poet' )( app );
 
 // All default options, but shown for example
@@ -25,14 +24,10 @@ app.listen( 3000 );
 
 function setupRss ( core ) {
   app.get('/rss', function ( req, res ) {
-    var posts = core.getPosts(0, 5);
+    var posts = core.getPosts(0, core.getPostCount());
     
-    // Since the preview is automatically generated for the examples,
-    // it contains markup. Strip out the markup with the html-to-text
-    // module. Or you can specify your own specific rss description
-    // per post
     posts.forEach(function (post) {
-      post.rssDescription = html2text.fromString(post.preview);
+      post.rssDescription = (post.rssPreview);
     });
 
     res.render( 'rss', { posts: posts });

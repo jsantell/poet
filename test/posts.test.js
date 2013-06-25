@@ -50,6 +50,13 @@ describe( 'Posts', function () {
 
         // Preview parameter should work and turn into html
         posts[0].preview.should.equal( '<p><em>some content</em></p>' + "\n" + readMoreAnchorp2 );
+        
+        // rawPreview parameter should work and return the correct non html text
+        posts[0].rawPreview.should.equal( "*some content*" );        
+        posts[1].rawPreview.should.equal( "*Lorem ipsum* dolor sit amet" );
+        posts[2].rawPreview.should.equal( "*Lorem ipsum* dolor sit amet, consectetur adipisicing elit." );
+        posts[3].rawPreview.should.equal( "p" );
+        posts[4].rawPreview.should.equal( "*Lorem ipsum*\n!!!more!!!\n*more ipsum*\n" );
 
         done();
       });
@@ -101,6 +108,11 @@ describe( 'Posts', function () {
 
         // Preview parameter should work and turn into html
         posts[0].preview.should.equal( '<p><em>some content</em></p>' + "\n" + readMoreAnchorp2);
+
+        // rawPreview parameter should work and return the correct non ht,l text
+        posts[0].rawPreview.should.equal( "*some content*" );
+        posts[1].rawPreview.should.equal( "*Lorem ipsum* dolor sit amet" );
+        posts[2].rawPreview.should.equal( "*Lorem ipsum* dolor sit amet, consectetur adipisicing elit." );
 
         done();
       });
