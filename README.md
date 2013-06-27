@@ -20,6 +20,7 @@ These sites are using Poet for their blogging, check them out! Ping me, or send 
 * [EffectiveIdea.com](http://effectiveidea.com)
 * [fictitious entry](http://fictitiousentry.com/)
 * [AndreasKlein.org](http://v7.andreasklein.org)
+* [Keyboardsurfer](kbsurfer.com)
 
 ## Installing
 
