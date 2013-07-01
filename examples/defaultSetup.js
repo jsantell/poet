@@ -4,6 +4,10 @@ var
   // All default options
   poet = require('../lib/poet')(app);
 
+poet.init().then(function () {
+  // initialized
+});
+
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
