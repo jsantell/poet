@@ -1,19 +1,75 @@
 var
-  express = require( 'express' ),
-  chai    = require( 'chai' ),
-  should  = chai.should(),
-  expect  = chai.expect;
+  Poet = require('../lib/poet'),
+  express = require('express'),
+  chai = require('chai'),
+  should = chai.should(),
+  expect = chai.expect;
 
-describe( 'Init', function () {
-  it( 'should pass in core functions to init callback', function ( done ) {
+describe('Init', function () {
+  it('should set up the posts, helpers on completion', function (done) {
     var
       app = express(),
-      poet = require( '../lib/poet' )( app );
+      poet = Poet(app, {
+        posts: './test/_postsJson'
+      });
 
-    poet.set({ posts: './test/_postsJson' }).init(function ( core ) {
-      core.getPosts.should.exist;
-      core.postList.should.have.length(6);
-      core.tagList.should.have.length(4);
+    poet.init().then(function () {
+      expect(poet.posts['test1']).to.be.ok;
+      expect(poet.helpers.getPosts().length).to.be.ok;
+      done();
+    }).then(null, done);
+  });
+
+  it('should return a promise on initialization that resolves to the instance', function (done) {
+    var
+      app = express(),
+      poet = Poet(app, {
+        posts: './test/_postsJson'
+      });
+
+    poet.init().then(function (poetRes) {
+      expect(poet).to.be.equal(poetRes);
+      done();
+    }).then(null, done);
+  });
+  
+  it('should reject when initialization fails', function (done) {
+    var
+      app = express(),
+      poet = Poet(app, {
+        posts: './test/_\m/'
+      });
+
+    poet.init().then(null, function (reason) {
+      expect(reason).to.be.ok;
+      done();
+    });
+  });
+
+  it('should accept a callback and return an instance on success', function (done) {
+    var
+      app = express(),
+      poet = Poet(app, {
+        posts: './test/_postsJson'
+      });
+
+    poet.init(function (err, poetRes) {
+      expect(poet).to.be.equal(poetRes);
+      expect(err).to.not.be.ok;
+      done();
+    });
+  });
+  
+  it('should accept a callback and return an error on failure', function (done) {
+    var
+      app = express(),
+      poet = Poet(app, {
+        posts: './test/_notADir'
+      });
+
+    poet.init(function (err, poetRes) {
+      expect(poetRes).to.not.be.ok;
+      expect(err).to.be.ok;
       done();
     });
   });
