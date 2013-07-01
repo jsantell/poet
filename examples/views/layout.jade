@@ -18,10 +18,10 @@ html
             .well.sidebar-nav
               ul.nav.nav-list
                 li.nav-header categories
-                - each cat in categoryList
+                - each cat in getCategories()
                   li
-                    a(href=categoryUrl(cat)) #{cat}
+                    a(href=categoryURL(cat)) #{cat}
                 li.nav-header tags
-                - each tag in tagList
+                - each tag in getTags()
                   li
-                    a(href=tagUrl(tag)) #{tag}
+                    a(href=tagURL(tag)) #{tag}

@@ -5,13 +5,6 @@ var
 
 // All default options, but shown for example
 
-poet
-  .createPostRoute()
-  .createPageRoute()
-  .createTagRoute()
-  .createCategoryRoute()
-  .init();
-
 app.set( 'view engine', 'jade' );
 app.set( 'views', __dirname + '/views' );
 app.use( express.static( __dirname + '/public' ));

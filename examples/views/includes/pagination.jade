@@ -4,8 +4,8 @@ ul.pagination
   - while ( i <= pageCount )
     if page == i
       li(class='active')
-        a(href=pageUrl(i)) #{i}
+        a(href=pageURL(i)) #{i}
     else
       li
-        a(href=pageUrl(i)) #{i}
+        a(href=pageURL(i)) #{i}
     - i++;
