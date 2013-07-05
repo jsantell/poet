@@ -9,7 +9,7 @@ View the source for [jsantell.com](https://github.com/jsantell/jsantell.com) to 
 
 ## Documentation
 
-Full documentation for *Poet* can be found at [http://jsantell.github.com/poet](http://jsantell.github.com/poet)
+Full documentation for *Poet* can be found at [http://jsantell.github.io/poet](http://jsantell.github.io/poet)
 
 ## Poet In Action
 
@@ -27,37 +27,35 @@ These sites are using Poet for their blogging, check them out! Ping me, or send 
 
 ## Setup
 
-Include Poet in your package.json and add it to your app, passing in your Express app and options.
+Include Poet in your package.json and add it to your app, passing in your Express app and options. Call the `init` method and routes will be set up!
+
 ```javascript
 var
   express = require('express'),
-  app     = express(),
-  poet    = require('poet')( app );
-
-poet.set({
+  app = express(),
+  Poet = require('poet');
+  
+var poet = Poet(app, {
   posts: './_posts/',
   postsPerPage: 5,
   metaFormat: 'json'
-})
-  .createPostRoute()
-  .createPageRoute()
-  .createTagRoute()
-  .createCategoryRoute()
-  .init();
+});
+
+poet.init().then(function () {
+  // ready to go!
+});
+
+/* set up the rest of the express app */
 ```
-
-### Options
-
-* `posts` path to directory of your files of posts (default: `./\_posts/`)
-* `metaFormat` format of your front matter on every blog post. Can be `yaml` or `json` (default: `json`)
-* `postsPerPage` How many posts are displayed per page in the page route
-* `readMoreLink` A function taking the post object as the only parameter, returning a string that is appended to the post's preview value. By default will be a function returning `<a href="{post.link}">{post.title}</a>`
-* `readMoreTag` A string in a post that is rendered as a read more link when parsed. (default: `<!--more-->`)
-
-## Posts
-
-Posts are constructed in markdown, jade, or any templated language of your choice (read [docs](http://jsantell.github.com/poet#format)), prefixed by front matter via [YAML](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) or [JSON](https://github.com/jsantell/node-json-front-matter). All attributes are stored into the post object.
 
 ## Development
 
-To run tests, run `npm test` from the project root to run the Mocha tests.
+To run tests, run `npm test` from the project root to run the Mocha tests. Generate documentation by updating the `docs.md` and running `make`.
+
+## Contributing
+
+Please read the [CONTRIBUTING.md](https://github.com/jsantell/poet/blob/master/CONTRIBUTING.md) for guides on contributions.
+
+## License
+
+MIT License, Copyright (c) 2012 Jordan Santell
