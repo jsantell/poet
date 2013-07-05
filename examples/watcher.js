@@ -4,12 +4,10 @@ var
   // All default options
   poet = require('../lib/poet')(app);
 
-poet.init().then(function () {
-  // initialized
-});
-
 poet.watch(function () {
   // watcher reloaded
+}).init().then(function () {
+  // Ready to go!
 });
 
 app.set('view engine', 'jade');

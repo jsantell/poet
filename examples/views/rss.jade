@@ -1,13 +1,18 @@
 doctype xml
-rss(version='2.0')
+rss(version='2.0', xmlns:atom='http://www.w3.org/2005/Atom')
   channel
-    title Poet Example
-    link jsantell.github.com/poet
-    description Examples of Poet use cases
+    title Poet RSS Example
+    link http://jsantell.github.io/poet
+    description A Poet RSS Example woo!
+    atom:link(href='http://localhost/rss', rel='self', type='application/rss+xml')
     each post in posts
+      - var fullUrl = 'http://localhost/' + post.url
       item
         title= post.title
-        link= post.url
-        description= post.rssDescription
-        pubDate= post.date
-        guid= post.slug
+        link= fullUrl
+        description
+          | <![CDATA[
+          | !{post.preview}
+          | ]]>
+        pubDate= post.date.toUTCString()
+        guid= fullUrl
