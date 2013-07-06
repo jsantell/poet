@@ -50,7 +50,7 @@ There are several ways of specifying the text of your post preview. **Poet** che
 
 * A `preview` property on a post. The text of this property runs through the appropriate template and be saved as the preview for a post
 * A `previewLength` property on a post, which will take the first `n` characters of your post (before running through a templating engine), becoming your preview.
-* The last, and most likely easiest, is specifying a `readMoreTag` option in your **Poet** configuration, which by defualt is `&lt;!--more--&gt;`. Whenever the `readMoreTag` is found int he post, anything proceeding it becomes the preview. You can set this globally in your **Poet** config, or specify a `readMoreTag` property for each post individually
+* The last, and most likely easiest, is specifying a `readMoreTag` option in your **Poet** configuration, which by default is `<!--more-->`. Whenever the `readMoreTag` is found int he post, anything proceeding it becomes the preview. You can set this globally in your **Poet** config, or specify a `readMoreTag` property for each post individually
 
 
 ## Options
