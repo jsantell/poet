@@ -73,6 +73,16 @@ pre {
     padding: 15px 15px 15px 80px;
 }
 
+code {
+  background-color: #ccc;
+  border-radius: 15px;
+  padding: 0px 5px;
+}
+
+code span {
+  color: #333 !important;
+}
+
 ul.methods {
     list-style: none;
 }
