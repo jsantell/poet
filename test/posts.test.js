@@ -124,4 +124,21 @@ describe('Posts', function () {
       }).then(null, done);
     });
   });
+
+  describe('Should recursively go through posts directory', function () {
+    it('should descend posts directory', function (done) {
+      var
+        app = express(),
+        poet = Poet(app, {
+          posts: './test/deepPosts'
+        });
+
+      poet.init().then(function () {
+        var posts = poet.helpers.getPosts();
+        posts.should.have.length(2);
+        poet.helpers.getPost('deep').should.be.ok;
+        done();
+      }).then(null, done);
+    });
+  });
 });
