@@ -1,23 +1,29 @@
 var
-  express  = require( 'express' ),
-  app      = express(),
-  poet     = require( '../lib/poet' )( app );
+  express = require('express'),
+  app = express(),
+  Poet = require('../lib/poet');
 
-poet.set({
-  postsPerPage : 3,
-  posts        : './_posts',
-  metaFormat   : 'json'
-}).createPostRoute( '/myposts/:post', 'post' )
-  .createPageRoute( '/pagination/:page', 'page' )
-  .createTagRoute( '/mytags/:tag', 'tag' )
-  .createCategoryRoute( '/mycategories/:category', 'category' )
-  .init();
+var poet = Poet(app, {
+  postsPerPage: 3,
+  posts: './_posts',
+  metaFormat: 'json',
+  routes: {
+    '/myposts/:post': 'post',
+    '/pagination/:page': 'page',
+    '/mytags/:tag': 'tag',
+    '/mycategories/:category': 'category'
+  }
+});
 
-app.set( 'view engine', 'jade' );
-app.set( 'views', __dirname + '/views' );
-app.use( express.static( __dirname + '/public' ));
-app.use( app.router );
+poet.init().then(function () {
+  // initialized
+});
 
-app.get( '/', function ( req, res ) { res.render( 'index' ) });
+app.set('view engine', 'jade');
+app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/public'));
+app.use(app.routes);
 
-app.listen( 3000 );
+app.get('/', function (req, res) { res.render('index');});
+
+app.listen(3000);

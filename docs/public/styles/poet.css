@@ -1,0 +1,92 @@
+body {
+    background-image: url(white_leather.png);
+    color: #222;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 100;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+
+h1 {
+    font-size: 60px;
+    font-family: 'La Belle Aurore', cursive;
+    margin: 10px;
+}
+
+h2 {
+    font-size: 40px;
+    font-family: 'La Belle Aurore', cursive;
+}
+
+h3 {
+    font-size: 24px;
+    font-family: 'La Belle Aurore', cursive;
+}
+
+.header {
+    color: #ddd;
+    opacity: 0.9;
+    height: 100px;
+    background-image: url(dark_leather.png);
+}
+
+a {
+    color: #ff0077;
+}
+
+a h1, a h2 {
+    color: #fff;
+}
+
+.header h1 {
+    float: left;
+    margin: 0 0 5px 0;
+}
+
+.header h2 {
+    float: left;
+    font-size: 24px;
+    margin: 38px 0 0 20px;
+}
+
+.wrap {
+    z-index: 10;
+    margin-top: 500px;
+    width: 960px;
+    margin: 0 auto;
+}
+
+.cartoon {
+    float: right;
+    background-image: url(../img/poet.png);
+    width: 300px;
+    height: 375px;
+    left: 0px;
+}
+
+pre {
+    background-color: #333;
+    border-radius: 15px;
+    width: 600px;
+    margin: 0 auto;
+    padding: 15px 15px 15px 80px;
+}
+
+code {
+  background-color: #ccc;
+  border-radius: 15px;
+  padding: 0px 5px;
+}
+
+code span {
+  color: #333 !important;
+}
+
+ul.methods {
+    list-style: none;
+}
+
+ul.methods strong {
+    font-family: monospace;
+}

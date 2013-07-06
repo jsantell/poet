@@ -1,105 +1,97 @@
 var
-  express = require( 'express' ),
-  chai    = require( 'chai' ),
-  should  = chai.should(),
-  expect  = chai.expect;
+  Poet = require('../lib/poet'),
+  express = require('express'),
+  chai = require('chai'),
+  should = chai.should(),
+  expect = chai.expect;
 
 var
   readMoreLink = '<a href="/post/test2">Test Post Two</a>';
 
-describe( 'Options', function () {
-  describe( 'readMoreLink', function () {
-    it( 'should be a function that returns markup appended to the preview', function ( done ) {
+describe('Options', function () {
+  describe('readMoreLink', function () {
+    it('should be a function that returns markup appended to the preview', function (done) {
       var
         app = express(),
-        poet = require( '../lib/poet' )( app );
+        poet = Poet(app, {
+          posts: './test/_postsJson',
+          readMoreLink: function ( post ) {
+            return '<a href="'+post.url+'">'+post.title+'</a>';
+          }
+        });
 
-      poet.set({
-        posts: './test/_postsJson',
-        readMoreLink: function ( post ) {
-          return '<a href="'+post.url+'">'+post.title+'</a>';
-        }
-      }).init(function ( core ) {
-        var posts = app.locals.postList;
-        posts[0].preview.should.equal( '<p><em>some content</em></p>' + "\n" + readMoreLink );
+      poet.init().then(function () {
+        poet.posts['test2'].preview.should.equal(
+          '<p><em>some content</em></p>' + "\n" + readMoreLink);
         done();
-      });
+      }).then(null, done);
     });
   });
 
-  describe( 'readMoreTag', function () {
+  describe('readMoreTag', function () {
     var customPreview = '<p><em>Lorem ipsum</em></p>\n<p><a href="/post/readMore" title="Read more of Read More Test">read more</a></p>',
       defaultPreview = '<p><em>Lorem ipsum</em>\n!!!more!!!\n<em>more ipsum</em></p>\n<p><a href="/post/readMore" title="Read more of Read More Test">read more</a></p>';
-    it( 'should by default use <!--more-->', function ( done ) {
+
+    it('should by default use <!--more-->', function (done) {
       var
         app = express(),
-        poet = require( '../lib/poet' )( app );
+        poet = Poet(app, {
+          posts: './test/_postsJson'
+        });
 
-      poet.set({
-        posts: './test/_postsJson'
-      }).init(function ( core ) {
-        var posts = app.locals.postList;
-        var s = '';
-        posts.forEach(function(p){s+=p.title+'+'+p.date+':'});
-        posts[4].preview.should.equal( defaultPreview, s );
+      poet.init().then(function () {
+        poet.posts['readMore'].preview.should.equal(defaultPreview);
         done();
-      });
+      }).then(null, done);
     });
+
     it( 'should be an option that specifies where the preview is cut off', function ( done ) {
       var
         app = express(),
-        poet = require( '../lib/poet' )( app );
-
-      poet.set({
-        posts: './test/_postsJson',
-        readMoreTag: '!!!more!!!'
-      }).init(function ( core ) {
-        var posts = app.locals.postList;
-        var s = '';
-        posts.forEach(function(p){s+=p.title+'+'+p.date+':'});
-        posts[4].preview.should.equal( customPreview, s);
+        poet = Poet(app, {
+          posts: './test/_postsJson',
+          readMoreTag: '!!!more!!!'
+        });
+      poet.init().then(function () {
+        poet.posts['readMore'].preview.should.equal(customPreview);
         done();
-      });
+      }).then(null, done);
     });
   });
-  
-  describe( 'showDrafts', function () {
-    it( 'should include drafts when true', function ( done ) {
-      var
-        app = express.createServer(),
-        poet = require( '../lib/poet' )( app );
 
-      poet.set({
-        posts: './test/_postsJson',
-        showDrafts: true
-      }).init(function ( core ) {
-        var posts = app.locals.getPosts();
-        posts.should.have.length(6);
-        var postCount = app.locals.getPostCount();
-        postCount.should.equal(6);
-        done();
-      });
-    });
-    it( 'should ignore drafts when false', function ( done ) {
+  describe('showDrafts', function () {
+    it('should include drafts when true', function (done) {
       var
-        app = express.createServer(),
-        poet = require( '../lib/poet' )( app );
-
-      poet.set({
-        posts: './test/_postsJson',
-        showDrafts: false
-      }).init(function ( core ) {
-        var posts = app.locals.getPosts();
-        posts.should.have.length(5);
-        posts.forEach( function ( p ) {
-          if ( p.draft ) {
-            should.fail( 'Unexpected draft included in getPosts() result' );
-          }
+        app = express(),
+        poet = Poet(app, {
+          posts: './test/_postsJson',
+          showDrafts: true
         });
-        var postCount = app.locals.getPostCount();
-        postCount.should.equal(5);
+
+      poet.init().then(function () {
+        expect(poet.helpers.getPosts().length).to.equal(6);
+        expect(poet.helpers.getPostCount()).to.equal(6);
         done();
-      });
+      }).then(null, done);
+    });
+
+    it('should ignore drafts when false', function (done) {
+      var
+        app = express(),
+        poet = Poet(app, {
+          posts: './test/_postsJson',
+          showDrafts: false
+        });
+
+      poet.init().then(function () {
+        expect(poet.helpers.getPosts().length).to.equal(5);
+        expect(poet.helpers.getPostCount()).to.equal(5);
+        poet.helpers.getPosts().map(function (post) {
+          if (post.draft)
+            should.fail('Unexpected draft included in getPosts() result');
+        });
+        done();
+      }).then(null, done);
     });
   });
 });
