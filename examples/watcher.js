@@ -1,10 +1,13 @@
 var
   express = require('express'),
   app = express(),
+  // All default options
   poet = require('../lib/poet')(app);
 
-poet.init().then(function () {
-  // initialized
+poet.watch(function () {
+  // watcher reloaded
+}).init().then(function () {
+  // Ready to go!
 });
 
 app.set('view engine', 'jade');
@@ -13,12 +16,5 @@ app.use(express.static(__dirname + '/public'));
 app.use(app.router);
 
 app.get('/', function (req, res) { res.render('index'); });
-
-app.get('/rss', function (req, res) {
-  // Only get the latest posts
-  var posts = poet.getPosts(0, 5);
-  res.setHeader('Content-Type', 'application/rss+xml');
-  res.render('rss', { posts: posts });
-});
 
 app.listen(3000);

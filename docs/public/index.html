@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Poet -- node.js blogging platform</title>
+    <link rel="stylesheet" href="styles/prettify.css">
+    <link rel="stylesheet" href="styles/poet.css">
+    <link href="http://fonts.googleapis.com/cs?family=La+Belle+Aurore" rel="stylesheet" type="text/css">
+    <script src="js/ga.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="wrap"><a href="http://github.com/jsantell/poet">
+          <h1>Poet</h1>
+          <h2>write your code love poem</h2></a></div>
+    </div>
+    <div class="wrap">
+      <div class="cartoon"></div>
+<h2>What is Poet?</h2>
+<p><a href="http://github.com/jsantell/poet" title="Poet"><strong>Poet</strong></a> is a blog generator in <a href="http://nodejs.org" title="node.js">node.js</a> to generate routing, render markdown/jade/whatever posts, and get a blog up and running <em>fast</em>. Poet may not make you blog-famous, and it may give you one less excuse for not having a blog, but just imagine the insane hipster cred you get for having node power your blog. <em>&quot;Cool blog, is this Wordpress or something?&quot;</em> your square friend asks. <em>&quot;Nah dude, this is in node,&quot;</em> you respond, while skateboarding off into the sunset, doing mad flips and stuff. Little do they know you just used Poet&#39;s autoroute generation to get your content in, like, seconds, up on that internet.</p>
+<h2>Getting Started</h2>
+<p>First thing first, throw <strong>Poet</strong> into your express app&#39;s package.json, or just install it locally with:</p>
+<pre>
+npm install poet
+</pre>
+
+<p>Once you have the <strong>Poet</strong> module in your app, just instantiate an instance with your Express app and options, and call the <code>init</code> method:</p>
+<pre>
+var
+  express = require('express'),
+  app = express(),
+  Poet = require('poet');
+
+var poet = Poet(app, {
+  posts: './_posts/',
+  postsPerPage: 5,
+  metaFormat: 'json'
+});
+
+poet.init().then(function () {
+  // ready to go!
+});
+
+/* set up the rest of the express app */
+</pre>
+
+<h2>Posts</h2>
+<p>Posts are constructed in <a href="http://daringfireball.net/projects/markdown/">markdown</a>/<a href="http://jade-lang.com/">jade</a>/<a href="#Templates">whatever-you-want</a>, prefixed by front matter via <a href="https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter">YAML</a> or <a href="https://github.com/jsantell/node-json-front-matter">JSON</a>. All attributes are stored in the posts object. An example of a blog post formatted with JSON Front Matter is below:</p>
+<pre>
+{{{
+  "title": "Hello World!",
+  "tags": ["blog", "fun"],
+  "category": "javascript",
+  "date": "7-5-2013"
+}}}
+
+Here goes the content that belongs to the post...
+</pre>
+
+<h3>Post Previews</h3>
+<p>There are several ways of specifying the text of your post preview. <strong>Poet</strong> checks several properties and the first valid option is used. The order and ways to accomplish this are below.</p>
+<ul>
+<li>A <code>preview</code> property on a post. The text of this property runs through the appropriate template and be saved as the preview for a post</li>
+<li>A <code>previewLength</code> property on a post, which will take the first <code>n</code> characters of your post (before running through a templating engine), becoming your preview.</li>
+<li>The last, and most likely easiest, is specifying a <code>readMoreTag</code> option in your <strong>Poet</strong> configuration, which by default is <code>&lt;!--more--&gt;</code>. Whenever the <code>readMoreTag</code> is found int he post, anything proceeding it becomes the preview. You can set this globally in your <strong>Poet</strong> config, or specify a <code>readMoreTag</code> property for each post individually</li>
+</ul>
+<h2>Options</h2>
+<ul>
+<li><code>posts</code> path to directory of your files of posts (default: <code>./\_posts/</code>)</li>
+<li><code>metaFormat</code> format of your front matter on every blog post. Can be <code>yaml</code> or <code>json</code> (default: <code>json</code>)</li>
+<li><code>postsPerPage</code> How many posts are displayed per page in the page route (default: <code>5</code>)</li>
+<li><code>readMoreLink</code> A function taking the post object as the only parameter, returning a string that is appended to the post&#39;s preview value. By default will be a function returning <code>&lt;a href=&quot;{post.link}&quot;&gt;{post.title}&lt;/a&gt;</code></li>
+<li><code>readMoreTag</code> A string in a post that is rendered as a read more link when parsed. (default: <code>&lt;!--more--&gt;</code>)</li>
+<li><code>showDrafts</code> An option on whether or not to display posts that have <code>drafts</code> meta set to true (default: <code>process.env.NODE\_ENV !== &#39;production&#39;</code>)</li>
+<li><code>routes</code> A hash of route keys (ex: <code>&#39;/post/:post&#39;</code> and the related view file (ex: <code>&#39;post&#39;</code>). More information in the <a href="#Routes">routes</a> section below.</li>
+</ul>
+<h2>Methods</h2>
+<h3>Poet::init([callback])</h3>
+<p>The <code>init</code> method traverses the directory of posts and stores all the information in memory, sets up the internal structures for retrieval and returns a promise resolving to the instance upon completion. An optional callback may be provided for a node style callback with <code>err</code> and <code>poet</code> arguments passed in, called upon completion. This is used when initializing the application, or if reconstructing the internal storage is needed.</p>
+<h3>Poet::watch([callback])</h3>
+<p>Sets up the <strong>Poet</strong> instance to watch the posts directory for changes (a new post, updated post, etc.) and reinitializes the engine and storage. An optional <code>callback</code> may be provided to signify the completion of the reinitialization.</p>
+<p>For an example of using <code>watch</code>, check out <a href="https://github.com/jsantell/poet/blob/master/examples/watcher.js">the watcher example</a></p>
+<h3>Poet::clearCache()</h3>
+<p>Used internally, this clears the <strong>Poet</strong> instance&#39;s internal cache, allowing it to be rebuilt on it&#39;s next use. This should not be used in most cases. Returns the <strong>Poet</strong> instance.</p>
+<h3 id="Templates">Poet::addTemplate(data)</h3>
+
+<p><strong>Poet</strong> comes with two templating engines by default (jade and markdown). To specify your own templating language, the <code>addTemplate</code> method may be used, taking a <code>data</code> object with two keys: <code>ext</code> and <code>fn</code>. <code>ext</code> may be a string or an array of strings, specifiying which extensions should use this templating engine, and <code>fn</code> does the rendering, where it is a function that passes a string parameter of text to be formatted and returns the formatted string. Here&#39;s an example of using your own YAML formatter:</p>
+<pre>
+var
+  express = require('express'),
+  app = express(),
+  yaml = require('yaml'),
+  Poet = require('poet');
+
+var poet = Poet(app);
+
+poet.addTemplate({
+  ext: 'yaml',
+  fn : function (s) { return yaml.eval(s); }
+}).init();
+</pre>
+
+<p>This runs any post with the file extension <code>yaml</code> (ex: <code>my_post.yaml</code>) through the <code>fn</code> specified (by calling the <code>yaml</code> module&#39;s <code>eval</code> method.</p>
+<h3>Poet::addRoute(route, handler)</h3>
+<p><code>addRoute</code> allows you to specify the handler for a specific route type. Accepting a <code>route</code> string (ex: &#39;/myposts/:post&#39;) and a function <code>handler</code>, the route is parsed based off of parameter name (<code>:post</code> for example in the route <code>/myposts/:post</code>), and the previously stored route for that route type (post) is replaced.</p>
+<p>The below example uses all default routes except for the post route, and gives full control over how the request is handled. Obviously extra code is needed to specify this, but we can add arbitrary code here, for example, to do some sort of logging:</p>
+<pre>
+var
+  express = require('express'),
+  app = express(),
+  Poet = require('poet');
+
+var poet = Poet(app);
+
+poet.addRoute('/myposts/:post', function (req, res, next) {
+  var post = poet.helpers.getPost(req.params.post);
+  if (post) {
+    // Do some fancy logging here
+    res.render('post', { post: post });
+  } else {
+    res.send(404);
+  }
+}).init();
+</pre>
+
+<p>For more examples on custom routing, check out the <a href="https://github.com/jsantell/poet/blob/master/examples/customRoutes.js">examples in the repository</a>.</p>
+<h2>Routing</h2>
+<p>The default configuration uses the default routes with the view names below:</p>
+<ul>
+<li>&#39;/post/:post&#39;: &#39;post&#39;</li>
+<li>&#39;/page/:page&#39;: &#39;page&#39;</li>
+<li>&#39;/tag/:tag&#39;: &#39;tag&#39;</li>
+<li>&#39;/category/:category&#39;: &#39;category&#39;</li>
+</ul>
+<p>For example, if your site root is <code>http://mysite.com</code>, going to the page <code>http://mysite.com/post/hello-world</code> will call the &#39;post&#39; view in your view directory and render the appropriate post. The options passed into the instantiation of the <strong>Poet</strong> instance can have a <code>routes</code> key, with an object containing key/value pairs of strings mapping a route to a view. Based off of the paramter in the route (ex: <code>:post</code> in <code>/post/:post</code>), the previous route will be replaced.</p>
+<p>For an example of customizing your route names and views, view the <a href="https://github.com/jsantell/poet/blob/master/examples/configuredSetup.js">example in the repository</a>. To override the default handlers of, check out the <code>Poet::addRoute(route, handler)</code> method.</p>
+<h2>Helpers</h2>
+<p>Built in helper methods are stored on the <strong>Poet</strong> instance&#39;s <code>helper</code> property. Used internally, and in the view locals, they can be used outside of <strong>Poet</strong> as well.</p>
+<ul>
+<li><code>getPosts(from, to)</code> - an array of reverse chronologically ordered post objects. May specify <code>from</code> and <code>to</code> based on their index, to limit which posts should be returned.</li>
+<li><code>getTags()</code> - an array of tag names</li>
+<li><code>getCategories</code> - an array of category names</li>
+<li><code>tagURL(tag)</code> - a function that takes a name of a tag and returns the corresponding URL based off of the routing configuration</li>
+<li><code>pageURL(page)</code> - a function that takes the number of a page and returns the corresponding URL based off of the routing configuration</li>
+<li><code>categoryURL(category)</code> - a function that takes a name of a category and returns the corresponding URL based off of the routing configuration</li>
+<li><code>getPostCount()</code> - a function that returns the number of total posts registered</li>
+<li><code>getPost(title)</code> - a function that returns the corresponding post based off of <code>title</code></li>
+<li><code>getPageCount()</code> - a function that returns the total number of pages, based off of number of posts registered and the <code>postsPerPage</code> option.</li>
+<li><code>postsWithTag(tag)</code> - returns an array of posts that contain <code>tag</code></li>
+<li><code>postsWithCategory(cat)</code> - returns an array of posts are in category `cat</li>
+<li><code>options</code> - all of the option configurations</li>
+</ul>
+<h2>Locals</h2>
+<p>In addition to all of the helpers being available to each view, there are additional variables accessible inside specific views.</p>
+<h3>Post Locals</h3>
+<ul>
+<li><code>post.url</code> - the URL of the current post</li>
+<li><code>post.content</code> - the content of the current post</li>
+<li><code>post.preview</code> - the preview of the current post</li>
+</ul>
+<h3>Page Locals</h3>
+<ul>
+<li><code>posts</code> - an array of post objects that are within the current post range</li>
+<li><code>page</code> - the number of the current page</li>
+</ul>
+<h3>Tag Locals</h3>
+<ul>
+<li><code>posts</code> - an array of all post objects that contain the current tag</li>
+<li><code>tag</code> - a string of the current tag&#39;s name</li>
+</ul>
+<h3>Category Locals</h3>
+<ul>
+<li><code>posts</code> - an array of all post objects with the current category</li>
+<li><code>category</code> - a string of the current category&#39;s name</li>
+</ul>
+<h2>Additional Examples</h2>
+<p>Be sure to check out the examples in the repository</p>
+<ul>
+<li><a href="https://github.com/jsantell/poet/blob/master/examples/defaultSetup.js">Default configuration</a></li>
+<li><a href="https://github.com/jsantell/poet/blob/master/examples/configuredSetup.js">Specifying some options</a></li>
+<li><a href="https://github.com/jsantell/poet/blob/master/examples/customRoutes.js">Using your own custom routes</a></li>
+<li><a href="https://github.com/jsantell/poet/blob/master/examples/rss.js">Setting up an RSS feed</a></li>
+<li><a href="https://github.com/jsantell/poet/blob/master/examples/watcher.js">Using a watcher</a></li>
+</ul>
+<h2>Get Bloggin&#39;!</h2>
+<p>Time to start writing your sweet, beautiful words. For more development information, check out the <a href="https://github.com/jsantell/poet">repository</a>, or scope out the examples in there to get a better idea. If you have any comments, questions, or suggestions, hit me up <a href="http://twitter.com/jsantell">@jsantell</a>!</p>
+      </div>
+    </div>
+    <script src="js/prettify.js"></script>
+    <script>
+      prettyPrint();
+  </script>
+  <a href="https://github.com/jsantell/poet"><img style="position:absolute;top:0;right:0;border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+  </body>
+</html>

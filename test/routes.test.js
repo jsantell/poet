@@ -1,41 +1,39 @@
 var
-  express = require( 'express' ),
-  chai    = require( 'chai' ),
+  Poet    = require('../lib/poet'),
+  express = require('express'),
+  chai    = require('chai'),
   should  = chai.should(),
   expect  = chai.expect,
-  routes  = require( '../lib/poet/routes' )(),
-  reqMock = require( './helpers/routeMocks' ).req,
-  resMock = require( './helpers/routeMocks' ).res,
-  routeInfo = require( './helpers/routeInfo' );
+  routes  = require('../lib/poet/routes'),
+  reqMock = require('./helpers/routeMocks').req,
+  resMock = require('./helpers/routeMocks').res,
+  routeInfo = require('./helpers/routeInfo');
 
-describe( 'Routes', function () {
-  it( 'should make the correct auto routes by default', function ( done ) {
+describe('Routes', function () {
+  it('should make the correct auto routes by default', function (done) {
     var
       app = express(),
-      poet = require( '../lib/poet' )( app );
+      poet = Poet(app, { posts: './test/_postsJson' });
 
-    poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
-      .createPostRoute()
-      .createPageRoute()
-      .createTagRoute()
-      .createCategoryRoute()
-      .init(function () {
-        routeInfo.getCallback( app, '/post/:post' )
-          .toString().should.equal( routes.post().toString() );
-        routeInfo.getCallback( app, '/page/:page' )
-          .toString().should.equal( routes.page().toString() );
-        routeInfo.getCallback( app, '/tag/:tag' )
-          .toString().should.equal( routes.tag().toString() );
-        routeInfo.getCallback( app, '/category/:category' )
-          .toString().should.equal( routes.category().toString() );
-        done();
-      });
+    poet.init().then(function () {
+      routeInfo.getCallback(app, '/post/:post')
+        .toString().should.equal(routes.postRouteGenerator().toString());
+      routeInfo.getCallback(app, '/page/:page')
+        .toString().should.equal(routes.pageRouteGenerator().toString());
+      routeInfo.getCallback(app, '/tag/:tag')
+        .toString().should.equal(routes.tagRouteGenerator().toString());
+      routeInfo.getCallback(app, '/category/:category')
+        .toString().should.equal(routes.categoryRouteGenerator().toString());
+      done();
+    });
   });
 
-  it( 'should use the default views', function ( done ) {
+  it('should use the default views', function (done) {
     var
       app = express(),
-      poet = require( '../lib/poet' )( app ),
+      poet = Poet(app, { posts: './test/_postsJson' });
+
+    var
       reqPost = reqMock({ post: 'test1'}),
       reqPage = reqMock({ page: 1}),
       reqTag = reqMock({ tag: 'a'}),
@@ -64,46 +62,52 @@ describe( 'Routes', function () {
       };
     })();
 
-    poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
-      .createPostRoute()
-      .createPageRoute()
-      .createTagRoute()
-      .createCategoryRoute()
-        .init(function () {
-          routeInfo.getCallback( app, '/post/:post' )( reqPost, resPost );
-          routeInfo.getCallback( app, '/page/:page' )( reqPage, resPage );
-          routeInfo.getCallback( app, '/tag/:tag' )( reqTag, resTag );
-          routeInfo.getCallback( app, '/category/:category' )( reqCategory, resCategory );
-      });
+    poet.init().then(function () {
+      routeInfo.getCallback(app, '/post/:post')(reqPost, resPost);
+      routeInfo.getCallback(app, '/page/:page')(reqPage, resPage);
+      routeInfo.getCallback(app, '/tag/:tag')(reqTag, resTag);
+      routeInfo.getCallback(app, '/category/:category')(reqCategory, resCategory);
+    });
   });
 
-  it( 'should allow configurable routes in the generator', function ( done ) {
+  it('should allow configurable routes in the config', function (done) {
     var
       app = express(),
-      poet = require( '../lib/poet' )( app );
-
-    poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
-      .createPostRoute( '/myposts/:post', 'post' )
-      .createPageRoute( '/pagesss/:page', 'page' )
-      .createTagRoute( '/mytags/:tag', 'tag' )
-      .createCategoryRoute( '/mycats/:category', 'category' )
-      .init(function () {
-        routeInfo.getCallback( app, '/myposts/:post' )
-          .toString().should.equal( routes.post().toString() );
-        routeInfo.getCallback( app, '/pagesss/:page' )
-          .toString().should.equal( routes.page().toString() );
-        routeInfo.getCallback( app, '/mytags/:tag' )
-          .toString().should.equal( routes.tag().toString() );
-        routeInfo.getCallback( app, '/mycats/:category' )
-          .toString().should.equal( routes.category().toString() );
-        done();
+      poet = Poet(app, {
+        posts: './test/_postsJson',
+        routes: {
+          '/myposts/:post': 'post',
+          '/pagesss/:page': 'page',
+          '/mytags/:tag': 'tag',
+          '/mycats/:category': 'category'
+        }
       });
+
+    poet.init().then(function () {
+      routeInfo.getCallback(app, '/myposts/:post')
+        .toString().should.equal(routes.postRouteGenerator().toString());
+      routeInfo.getCallback(app, '/pagesss/:page')
+        .toString().should.equal(routes.pageRouteGenerator().toString());
+      routeInfo.getCallback(app, '/mytags/:tag')
+        .toString().should.equal(routes.tagRouteGenerator().toString());
+      routeInfo.getCallback(app, '/mycats/:category')
+        .toString().should.equal(routes.categoryRouteGenerator().toString());
+      done();
+    });
   });
   
-  it( 'should use configurable views', function ( done ) {
+  it('should use configurable views', function ( done ) {
     var
       app = express(),
-      poet = require( '../lib/poet' )( app ),
+      poet = Poet(app, {
+        posts: './test/_postsJson',
+        routes: {
+          '/myposts/:post': 'postView',
+          '/pagesss/:page': 'pageView',
+          '/mytags/:tag': 'tagView',
+          '/mycats/:category': 'categoryView'
+        }
+      }),
       reqPost = reqMock({ post: 'test1'}),
       reqPage = reqMock({ page: 1}),
       reqTag = reqMock({ tag: 'a'}),
@@ -132,16 +136,11 @@ describe( 'Routes', function () {
       };
     })();
 
-    poet.set({ posts: './test/_postsJson', metaFormat: 'json' })
-      .createPostRoute( '/myposts/:post', 'postView' )
-      .createPageRoute( '/postlist/:page', 'pageView' )
-      .createTagRoute( '/mytags/:tag', 'tagView' )
-      .createCategoryRoute( '/mycats/:category', 'categoryView' )
-      .init(function () {
-        routeInfo.getCallback( app, '/myposts/:post' )( reqPost, resPost );
-        routeInfo.getCallback( app, '/postlist/:page' )( reqPage, resPage );
-        routeInfo.getCallback( app, '/mytags/:tag' )( reqTag, resTag );
-        routeInfo.getCallback( app, '/mycats/:category' )( reqCategory, resCategory );
-      });
+    poet.init().then(function () {
+      routeInfo.getCallback(app, '/myposts/:post')(reqPost, resPost);
+      routeInfo.getCallback(app, '/pagesss/:page')(reqPage, resPage);
+      routeInfo.getCallback(app, '/mytags/:tag')(reqTag, resTag);
+      routeInfo.getCallback(app, '/mycats/:category')(reqCategory, resCategory);
+    });
   });
 });
