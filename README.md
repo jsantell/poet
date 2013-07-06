@@ -7,6 +7,15 @@ View the source for [jsantell.com](https://github.com/jsantell/jsantell.com) to 
 
 ![The Node Poet](https://raw.github.com/jsantell/poet/gh-pages/img/poet.png)
 
+## New Release
+
+**v1.0.0rc**
+A giant refactor has occurred -- all tests are passing, and be sure to test when upgrading to this release candidate. Some features may be missing or not working as intended. If you notice any issues, please file a bug.
+
+Some features have been removed and changed, so please note the changes in the change log -- your site may need to be slightly changed to accomodate the latest.
+
+[**Changes in v1.0.0rc**](https://github.com/jsantell/poet/blob/master/CHANGELOG.md)
+
 ## Documentation
 
 Full documentation for *Poet* can be found at [http://jsantell.github.io/poet](http://jsantell.github.io/poet)
