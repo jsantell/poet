@@ -1,31 +1,31 @@
 {
-  "name" : "poet",
-  "description" : "quick and easy blog module, using markdown, jade, whatever",
-  "version" : "0.2.9",
-  "main" : "lib/poet",
-  "dependencies" : {
-    "marked"     : ">= 0.2.8",
-    "jade"              : ">= 0.27.1",
-    "json-front-matter" : ">= 0.1.x",
-    "underscore"        : "1.4.x",
-    "front-matter"      : ">= 0.1.x",
-    "when"              : "2.1.x",
-    "fs-then"           : "0.1.x"
+  "name": "poet",
+  "description": "quick and easy blog module, using markdown, jade, whatever",
+  "version": "1.0.0rc1",
+  "main": "lib/poet",
+  "dependencies": {
+    "marked": ">= 0.2.8",
+    "jade": ">= 0.27.1",
+    "json-front-matter": ">= 0.1.x",
+    "underscore": "1.4.x",
+    "front-matter": ">= 0.1.x",
+    "when": "2.1.x",
+    "fs-then": "0.1.x"
   },
-  "devDependencies" : {
-    "mocha"     : ">= 1.3.2",
-    "chai"      : ">= 1.1.1",
-    "supertest" : ">= 0.0.1",
-    "express"   : ">= 3.2.4"
+  "devDependencies": {
+    "mocha": ">= 1.3.2",
+    "chai": ">= 1.1.1",
+    "supertest": ">= 0.0.1",
+    "express": ">= 3.2.4"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "http://github.com/jsantell/poet"
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jsantell/poet"
   },
-  "scripts" : {
-    "test" : "./node_modules/.bin/mocha --reporter spec --ui bdd"
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec --ui bdd"
   },
-  "keywords" : [
+  "keywords": [
     "blog",
     "blogging",
     "markdown",
@@ -33,10 +33,10 @@
     "posts",
     "writing"
   ],
-  "author" : {
-    "name" : "Jordan Santell",
-    "url" : "http://github.com/jsantell"
+  "author": {
+    "name": "Jordan Santell",
+    "url": "http://github.com/jsantell"
   },
-  "license" : "MIT",
-  "engines" : ["node >= 0.10.2"]
+  "license": "MIT",
+  "engines": ["node >= 0.10.2"]
 }
