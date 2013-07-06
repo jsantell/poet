@@ -141,4 +141,20 @@ describe('Posts', function () {
       }).then(null, done);
     });
   });
+
+  describe('Correctly handle any path', function () {
+    it('should handle "."s in a post path', function (done) {
+      var
+        app = express(),
+        poet = Poet(app, {
+          posts: './test/test.posts'
+        });
+
+      poet.init().then(function () {
+        var posts = poet.helpers.getPosts();
+        posts.should.have.length(1);
+        done();
+      }).then(null, done);
+    });
+  });
 });
