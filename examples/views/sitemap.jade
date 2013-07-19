@@ -1,0 +1,6 @@
+doctype xml
+urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+  each post in posts
+    - var fullUrl = 'http://localhost' + post.url
+      url
+        loc= fullUrl
