@@ -32,7 +32,7 @@ describe('Init', function () {
       done();
     }).then(null, done);
   });
-  
+
   it('should reject when initialization fails', function (done) {
     var
       app = express(),
@@ -59,7 +59,7 @@ describe('Init', function () {
       done();
     });
   });
-  
+
   it('should accept a callback and return an error on failure', function (done) {
     var
       app = express(),
@@ -70,6 +70,22 @@ describe('Init', function () {
     poet.init(function (err, poetRes) {
       expect(poetRes).to.not.be.ok;
       expect(err).to.be.ok;
+      done();
+    });
+  });
+
+  it('should accept initialization options that are not in the defaults', function (done) {
+    var
+      app = express(),
+      poet = Poet(app, {
+        posts: './test/_postsJson',
+        mycat: 'IsCool'
+      });
+
+    poet.init().then(function () {
+      expect(poet.options.posts).to.be.ok;
+      expect(poet.options.mycat).to.be.ok;
+      poet.options.mycat.should.equal('IsCool');
       done();
     });
   });
