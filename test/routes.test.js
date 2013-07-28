@@ -95,7 +95,34 @@ describe('Routes', function () {
       done();
     });
   });
-  
+
+  it('should allow manually added routes', function(done) {
+    var
+      app = express(),
+      poet = Poet(app),
+      handler = function (request, response) {};
+
+    poet.addRoute('/myposts/:post', handler);
+    poet.addRoute('/pagesss/:page', handler);
+    poet.addRoute('/mytags/:tag', handler);
+    poet.addRoute('/mycats/:category', handler);
+    poet.addRoute('/', handler);
+
+    poet.init();
+
+    routeInfo.getCallback(app, '/myposts/:post')
+      .should.equal(handler);
+    routeInfo.getCallback(app, '/pagesss/:page')
+      .should.equal(handler);
+    routeInfo.getCallback(app, '/mytags/:tag')
+      .should.equal(handler);
+    routeInfo.getCallback(app, '/mycats/:category')
+      .should.equal(handler);
+    routeInfo.getCallback(app, '/')
+      .should.equal(handler);
+    done();
+  });
+
   it('should use configurable views', function ( done ) {
     var
       app = express(),
