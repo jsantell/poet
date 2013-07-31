@@ -30,6 +30,7 @@ These sites are using Poet for their blogging, check them out! Ping me, or send 
 * [fictitious entry](http://fictitiousentry.com/)
 * [AndreasKlein.org](http://v7.andreasklein.org)
 * [Keyboardsurfer](kbsurfer.com)
+* [FightMagicRun](http://fightmagicrun.com/blog)
 
 ## Installing
 
