@@ -31,6 +31,8 @@ These sites are using Poet for their blogging, check them out! Ping me, or send 
 * [AndreasKlein.org](http://v7.andreasklein.org)
 * [Keyboardsurfer](kbsurfer.com)
 * [FightMagicRun](http://fightmagicrun.com/blog)
+* [Morgondag](http://morgondag.nu)
+* [Vemdel - Raspberry Hunt](http://vemdel-game.com)
 
 ## Installing
 
