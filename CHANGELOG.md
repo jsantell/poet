@@ -1,5 +1,11 @@
 # Change Log
 
+## v1.0.0-rc2
+
+* Added a 'next()' fallback for the auto page route, issue #45 
+* Allow users to specify their own options to be included in `poet.options`, issue #37,
+* Fixed an issue where calling `addRoute` with an invalid route misbehaves, issue #38 
+
 ## v1.0.0rc1
 
 Check out the examples directory for updated uses of the changes.
