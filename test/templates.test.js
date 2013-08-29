@@ -61,6 +61,26 @@ describe('Templating', function () {
     }).then(null, done);
   });
 
+  it('should correctly render with any custom formatter asynchronously', function (done) {
+    var
+      app = express(),
+      poet = Poet(app, {
+        posts: './test/_postsJson'
+      });
+    
+    poet.addTemplate({
+      ext: 'custom',
+      fn: function (s, callback) {
+        callback(null, s.replace(/\*(.*?)\*/g, '<$1>'));
+      }
+    }).init().then(function () {
+      var posts = poet.posts;
+      posts['customTemplate'].content.should.contain(pEl);
+      posts['customTemplate'].content.should.contain(h1El);
+      done();
+    }).then(null, done);
+  });
+
   it('markdown should not strip out HTML elements', function () {
     var
       app = express(),
