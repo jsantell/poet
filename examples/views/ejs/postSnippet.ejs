@@ -1,0 +1,21 @@
+<div class="post">
+
+  <h1><a href=<%= post.url %>><%= post.title %></a></h1>
+
+  <span class="date">
+    <%= (post.date.getMonth() + 1) + '.' + post.date.getDate() + '.' + post.date.getFullYear() %>
+  </span>
+
+  <div class="post content">
+    <%- post.preview %>
+  </div>
+
+  <div class="tags">
+    <% post.tags.forEach(function(tag){ %>
+      <a href='<%= tagUrl(tag) %>'>
+        <span class="label label-info"><%= tag %></span>
+      </a>
+    <% }) %>
+  </div>
+
+</div>
