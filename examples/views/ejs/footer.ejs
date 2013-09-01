@@ -4,16 +4,14 @@
             <div class="well sidebar-nav">
               <ul class="nav nav-list">
                 <li class="nav-header">categories</li>
-                <li><a href="/mycategories/audio">audio</a></li>
-                <li><a href="/mycategories/canvas">canvas</a></li>
-                <li><a href="/mycategories/jquery">jquery</a></li>
-                <li><a href="/mycategories/node">node</a></li>
-                <li><a href="/mycategories/vim">vim</a></li>
+                <% getCategories().forEach(function(cat) { %>
+                  <li><a href="<% categoryURL(cat) %>"><%= cat %></a></li>
+                <% }) %>
 
                 <li class="nav-header">tags</li>
-                <li><a href="/mytags/audio%20data">audio data</a></li>
-                <li><a href="/mytags/canvas">canvas</a></li>
-                <li><a href="/mytags/charts">charts</a></li>
+                <% getTags().forEach(function(tag) { %>
+                  <li><a href="<% tagURL(tag) %>"><%= tag %></a></li>
+                <% }) %>
               </ul>
             </div>
           </div>
