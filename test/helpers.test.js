@@ -110,12 +110,34 @@ describe('helpers.postsWithTag()', function () {
   });
 });
 
+describe('helpers.postsWithTag()', function () {
+  it('should not see drafts on production', function (done) {
+    setup(function (poet) {
+      poet.options.showDrafts = false;
+      var posts = poet.helpers.postsWithTag('d');
+      (posts.length).should.equal(1);
+      done();
+    }, done);
+  });
+});
+
 describe('helpers.postsWithCategories()', function () {
   it('should return posts ordered by date, newest first', function (done) {
     setup(function (poet) {
       var posts = poet.helpers.postsWithCategory('testing');
       (posts[0].date.getTime() > posts[1].date.getTime()).should.equal(true);
       (posts[1].date.getTime() > posts[2].date.getTime()).should.equal(true);
+      done();
+    }, done);
+  });
+});
+
+describe('helpers.postsWithCategories()', function () {
+  it('should not see drafts on production', function (done) {
+    setup(function (poet) {
+      poet.options.showDrafts = false;
+      var posts = poet.helpers.postsWithCategory('other cat');
+      (posts.length).should.equal(1);
       done();
     }, done);
   });
