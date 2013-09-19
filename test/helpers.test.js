@@ -58,6 +58,24 @@ describe('helpers.getPostCount()', function () {
       done();
     }, done);
   });
+
+  it('should return correct count of posts with `showDrafts` false', function (done) {
+    setup(function (poet) {
+      poet.options.showDrafts = false;
+      expect(poet.helpers.getPostCount()).to.be.equal(5);
+      expect(poet.helpers.getPosts().length).to.be.equal(5);
+      done();
+    }, done);
+  });
+
+  it('should return correct count of posts with `showFuture` false', function (done) {
+    setup(function (poet) {
+      poet.options.showFuture = false;
+      expect(poet.helpers.getPostCount()).to.be.equal(5);
+      expect(poet.helpers.getPosts().length).to.be.equal(5);
+      done();
+    }, done);
+  });
 });
 
 describe('helpers.getPost(title)', function () {
@@ -97,6 +115,15 @@ describe('helpers.getPageCount()', function () {
       done();
     }, done);
   });
+
+  it('returns the correct number of pages based off of drafts', function (done) {
+    setup(function (poet) {
+      // Based off of 5 non-draft posts and default postsPerPage of 5
+      poet.options.showDrafts = false;
+      expect(poet.helpers.getPageCount()).to.be.equal(1);
+      done();
+    }, done);
+  });
 });
 
 describe('helpers.postsWithTag()', function () {
@@ -108,14 +135,19 @@ describe('helpers.postsWithTag()', function () {
       done();
     }, done);
   });
-});
 
-describe('helpers.postsWithTag()', function () {
-  it('should not see drafts on production', function (done) {
+  it('should not see drafts when `showDrafts` false', function (done) {
     setup(function (poet) {
       poet.options.showDrafts = false;
-      var posts = poet.helpers.postsWithTag('d');
-      (posts.length).should.equal(1);
+      expect(poet.helpers.postsWithTag('d').length).to.be.equal(1);
+      done();
+    }, done);
+  });
+
+  it('should not see future posts when `showFuture` false', function (done) {
+    setup(function (poet) {
+      poet.options.showFuture = false;
+      expect(poet.helpers.postsWithTag('c').length).to.be.equal(0);
       done();
     }, done);
   });
@@ -130,14 +162,20 @@ describe('helpers.postsWithCategories()', function () {
       done();
     }, done);
   });
-});
 
-describe('helpers.postsWithCategories()', function () {
-  it('should not see drafts on production', function (done) {
+  it('should not see drafts when `showDrafts` false', function (done) {
     setup(function (poet) {
       poet.options.showDrafts = false;
       var posts = poet.helpers.postsWithCategory('other cat');
       (posts.length).should.equal(1);
+      done();
+    }, done);
+  });
+
+  it('should not see future posts when `showFuture` false', function (done) {
+    setup(function (poet) {
+      poet.options.showFuture = false;
+      expect(poet.helpers.postsWithCategory('testing').length).to.be.equal(2);
       done();
     }, done);
   });

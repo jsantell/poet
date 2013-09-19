@@ -2,7 +2,7 @@
   "title" : "Test Post Two",
   "tags" : [ "a", "b", "c" ],
   "category" : "testing",
-  "date" : "7-15-2012",
+  "date" : "7-15-2020",
   "preview" : "*some content*"
 }}}
 
