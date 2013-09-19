@@ -1,5 +1,11 @@
 # Change Log
 
+## v1.0.0-rc3
+
+* Added async templating processing, issue #50
+* Fixed hiding drafts in helper functions, issue #54, issue #48
+* Option `showFuture` to hide posts scheduled for the future, issue #47
+
 ## v1.0.0-rc2
 
 * Added a 'next()' fallback for the auto page route, issue #45 
