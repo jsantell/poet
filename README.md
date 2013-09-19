@@ -9,12 +9,12 @@ View the source for [jsantell.com](https://github.com/jsantell/jsantell.com) to 
 
 ## New Release
 
-**v1.0.0-rc2**
+**v1.0.0-rc3**
 A giant refactor has occurred -- all tests are passing, and be sure to test when upgrading to this release candidate. Some features may be missing or not working as intended. If you notice any issues, please file a bug.
 
 Some features have been removed and changed, so please note the changes in the change log -- your site may need to be slightly changed to accomodate the 1.x.x releases from previous versions.
 
-[**Changes in v1.0.0-rc2**](https://github.com/jsantell/poet/blob/master/CHANGELOG.md)
+[**Changes in v1.0.0-rc3**](https://github.com/jsantell/poet/blob/master/CHANGELOG.md)
 
 ## Documentation
 
