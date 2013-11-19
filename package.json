@@ -4,9 +4,9 @@
   "version": "1.0.0-rc3",
   "main": "lib/poet",
   "dependencies": {
-    "marked": ">= 0.2.8",
+    "marked": "0.2.8",
     "jade": ">= 0.27.1",
-    "json-front-matter": ">= 0.1.x",
+    "json-front-matter": ">= 0.1.4",
     "underscore": "1.4.x",
     "front-matter": ">= 0.1.x",
     "when": "2.1.x",
