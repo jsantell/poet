@@ -8,9 +8,9 @@ var
 var
   postPreview = '<p><em>Lorem ipsum</em> dolor sit amet, consectetur adipisicing elit.</p>',
   postBody    = '<p><em>Lorem ipsum</em> dolor sit amet, consectetur adipisicing elit.</p>\n<h1>Header 1</h1>\n',
-  readMoreAnchorp1 = '<p><a href="/post/test1" title="Read more of Test Post One">read more</a></p>',
-  readMoreAnchorp2 = '<p><a href="/post/test2" title="Read more of Test Post Two">read more</a></p>';
-  readMoreAnchorp3 = '<p><a href="/post/test3" title="Read more of Test Post Three">read more</a></p>';
+  readMoreAnchorp1 = '<p><a href="/post/test-post-one" title="Read more of Test Post One">read more</a></p>',
+  readMoreAnchorp2 = '<p><a href="/post/test-post-two" title="Read more of Test Post Two">read more</a></p>';
+  readMoreAnchorp3 = '<p><a href="/post/test-post-three" title="Read more of Test Post Three">read more</a></p>';
 
 describe('Posts', function () {
   describe('Posts with JSON front-matter', function () {
@@ -25,17 +25,18 @@ describe('Posts', function () {
       poet.init().then(function () {
         var posts = poet.helpers.getPosts();
         posts.should.have.length(6);
-        poet.posts['test1'].slug.should.equal('test1');
-        poet.posts['test1'].tags.should.have.length(2);
-        poet.posts['test1'].tags.should.include('a');
-        poet.posts['test1'].tags.should.include('b');
-        poet.posts['test1'].category.should.equal('testing');
-        poet.posts['test1'].url.should.equal('/post/test1');
-        poet.posts['test1'].arbitrary.should.equal('arbitrary content');
+        var post = poet.posts['test-post-one'];
+        post.slug.should.equal('test-post-one');
+        post.tags.should.have.length(2);
+        post.tags.should.include('a');
+        post.tags.should.include('b');
+        post.category.should.equal('testing');
+        post.url.should.equal('/post/test-post-one');
+        post.arbitrary.should.equal('arbitrary content');
 
         // Also tests HTML rendering
-        poet.posts['test1'].preview.should.equal(postPreview + "\n" + readMoreAnchorp1 );
-        poet.posts['test1'].content.should.equal(postBody);
+        post.preview.should.equal(postPreview + "\n" + readMoreAnchorp1 );
+        post.content.should.equal(postBody);
 
         // All posts should be in order
         posts[5].title.should.equals('Test Post Four - A Draft');
@@ -84,12 +85,12 @@ describe('Posts', function () {
         var posts = poet.helpers.getPosts();
         posts.should.have.length(4);
         posts[2].title.should.equal('Test Post One');
-        posts[2].slug.should.equal('test1');
+        posts[2].slug.should.equal('test-post-one');
         posts[2].tags.should.have.length(2);
         posts[2].tags.should.include('a');
         posts[2].tags.should.include('b');
         posts[2].category.should.equal('testing');
-        posts[2].url.should.equal('/post/test1');
+        posts[2].url.should.equal('/post/test-post-one');
         posts[2].arbitrary.should.equal('arbitrary content');
 
         // Also tests HTML rendering
@@ -136,7 +137,7 @@ describe('Posts', function () {
       poet.init().then(function () {
         var posts = poet.helpers.getPosts();
         posts.should.have.length(2);
-        poet.helpers.getPost('deep').should.be.ok;
+        poet.helpers.getPost('test-post-one').should.be.ok;
         done();
       }).then(null, done);
     });

@@ -14,7 +14,7 @@ describe('Init', function () {
       });
 
     poet.init().then(function () {
-      expect(poet.posts['test1']).to.be.ok;
+      expect(poet.posts['test-post-one']).to.be.ok;
       expect(poet.helpers.getPosts().length).to.be.ok;
       done();
     }).then(null, done);
