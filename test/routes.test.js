@@ -34,7 +34,7 @@ describe('Routes', function () {
       poet = Poet(app, { posts: './test/_postsJson' });
 
     var
-      reqPost = reqMock({ post: 'test1'}),
+      reqPost = reqMock({ post: 'test-post-one'}),
       reqPage = reqMock({ page: 1}),
       reqTag = reqMock({ tag: 'a'}),
       reqCategory = reqMock({ category: 'testing' }),
@@ -135,7 +135,7 @@ describe('Routes', function () {
           '/mycats/:category': 'categoryView'
         }
       }),
-      reqPost = reqMock({ post: 'test1'}),
+      reqPost = reqMock({ post: 'read-more-test'}),
       reqPage = reqMock({ page: 1}),
       reqTag = reqMock({ tag: 'a'}),
       reqCategory = reqMock({ category: 'testing' }),
