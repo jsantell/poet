@@ -19,8 +19,8 @@ describe('Templating', function () {
 
     poet.init().then(function () {
       var posts = poet.posts;
-      posts['test1'].content.should.contain(pEl);
-      posts['test1'].content.should.contain(h1El);
+      posts['test-one'].content.should.contain(pEl);
+      posts['test-one'].content.should.contain(h1El);
       done();
     }).then(null, done);
   });
