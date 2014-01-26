@@ -148,12 +148,29 @@ describe('Posts', function () {
       var
         app = express(),
         poet = Poet(app, {
-          posts: './test/test.posts'
+          posts: './test/test-posts/period.path'
         });
 
       poet.init().then(function () {
         var posts = poet.helpers.getPosts();
         posts.should.have.length(1);
+        done();
+      }).then(null, done);
+    });
+  });
+
+  describe('Post Attributes', function () {
+    it('slug attribute overrides default slug and changes URL', function (done) {
+      var
+        app = express(),
+        poet = Poet(app, {
+          posts: './test/test-posts/slug'
+        });
+
+      poet.init().then(function () {
+        var posts = poet.helpers.getPosts();
+        posts[0].slug.should.be.equal('custom-slug');
+        posts[0].url.should.be.equal('/post/custom-slug');
         done();
       }).then(null, done);
     });
