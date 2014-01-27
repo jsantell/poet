@@ -96,6 +96,21 @@ describe('Routes', function () {
     });
   });
 
+  it('should allow empty routes in config', function (done) {
+    var
+      app = express(),
+      poet = Poet(app, {
+        posts: './test/_postsJson',
+        routes: { }
+      });
+
+    poet.init().then(function () {
+      //make sure the posts actually get created
+      Object.keys(poet.posts).should.have.length(6);
+      done();
+    });
+  });
+
   it('should allow manually added routes', function(done) {
     var
       app = express(),
