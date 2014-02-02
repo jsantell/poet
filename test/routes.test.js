@@ -150,7 +150,7 @@ describe('Routes', function () {
           '/mycats/:category': 'categoryView'
         }
       }),
-      reqPost = reqMock({ post: 'read-more-test'}),
+      reqPost = reqMock({ post: 'test-post-one'}),
       reqPage = reqMock({ page: 1}),
       reqTag = reqMock({ tag: 'a'}),
       reqCategory = reqMock({ category: 'testing' }),
