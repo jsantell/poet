@@ -6,7 +6,7 @@ var
   expect = chai.expect;
 
 var
-  readMoreLink = '<a href="/post/test2">Test Post Two</a>';
+  readMoreLink = '<a href="/post/test-post-two">Test Post Two</a>';
 
 describe('Options', function () {
   describe('readMoreLink', function () {
@@ -21,7 +21,7 @@ describe('Options', function () {
         });
 
       poet.init().then(function () {
-        poet.posts['test2'].preview.should.equal(
+        poet.posts['test-post-two'].preview.should.equal(
           '<p><em>some content</em></p>' + "\n" + readMoreLink);
         done();
       }).then(null, done);
@@ -29,8 +29,8 @@ describe('Options', function () {
   });
 
   describe('readMoreTag', function () {
-    var customPreview = '<p><em>Lorem ipsum</em></p>\n<p><a href="/post/readMore" title="Read more of Read More Test">read more</a></p>',
-      defaultPreview = '<p><em>Lorem ipsum</em>\n!!!more!!!\n<em>more ipsum</em></p>\n<p><a href="/post/readMore" title="Read more of Read More Test">read more</a></p>';
+    var customPreview = '<p><em>Lorem ipsum</em></p>\n<p><a href="/post/read-more-test" title="Read more of Read More Test">read more</a></p>',
+      defaultPreview = '<p><em>Lorem ipsum</em>\n!!!more!!!\n<em>more ipsum</em></p>\n<p><a href="/post/read-more-test" title="Read more of Read More Test">read more</a></p>';
 
     it('should by default use <!--more-->', function (done) {
       var
@@ -40,7 +40,7 @@ describe('Options', function () {
         });
 
       poet.init().then(function () {
-        poet.posts['readMore'].preview.should.equal(defaultPreview);
+        poet.posts['read-more-test'].preview.should.equal(defaultPreview);
         done();
       }).then(null, done);
     });
@@ -53,7 +53,7 @@ describe('Options', function () {
           readMoreTag: '!!!more!!!'
         });
       poet.init().then(function () {
-        poet.posts['readMore'].preview.should.equal(customPreview);
+        poet.posts['read-more-test'].preview.should.equal(customPreview);
         done();
       }).then(null, done);
     });

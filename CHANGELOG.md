@@ -1,5 +1,14 @@
 # Change Log
 
+## v1.0.0-rc4
+* :warning: The `routes` configuration option during instantiation will no longer create routes that are not explicitly defined, unless using defaults, issue #71
+  * Leaving `routes` as empty will continue to use the default routing.
+  * Setting `routes` to `null` will not set any routes.
+  * Setting `routes` to an object will only define routes specified in that object. Therefore, using an empty object will not set any routes.
+* :warning: Post slugs are now created from the `title` attribute instead of the file name. Slugs can also be customized by adding a `slug` attribute in a post, issue #64, issue #69
+* Bake version of `marked` and `json-front-matter` to be consistent with previous versions -- can include newer versions with custom templating.
+* Handles errors more gracefully when posts cannot compile with their template, issue #61
+
 ## v1.0.0-rc3
 
 * Added async templating processing, issue #50

@@ -19,8 +19,8 @@ describe('Templating', function () {
 
     poet.init().then(function () {
       var posts = poet.posts;
-      posts['test1'].content.should.contain(pEl);
-      posts['test1'].content.should.contain(h1El);
+      posts['test-post-one'].content.should.contain(pEl);
+      posts['test-post-one'].content.should.contain(h1El);
       done();
     }).then(null, done);
   });
@@ -34,8 +34,8 @@ describe('Templating', function () {
 
     poet.init().then(function () {
       var posts = poet.posts;
-      posts['jadeTemplate'].content.should.contain(pEl);
-      posts['jadeTemplate'].content.should.contain(h1El);
+      posts['jade-test'].content.should.contain(pEl);
+      posts['jade-test'].content.should.contain(h1El);
       done();
     }).then(null, done);
   });
@@ -55,8 +55,8 @@ describe('Templating', function () {
       }
     }).init().then(function () {
       var posts = poet.posts;
-      posts['customTemplate'].content.should.contain(pEl);
-      posts['customTemplate'].content.should.contain(h1El);
+      posts['custom-test'].content.should.contain(pEl);
+      posts['custom-test'].content.should.contain(h1El);
       done();
     }).then(null, done);
   });
@@ -75,8 +75,8 @@ describe('Templating', function () {
       }
     }).init().then(function () {
       var posts = poet.posts;
-      posts['customTemplate'].content.should.contain(pEl);
-      posts['customTemplate'].content.should.contain(h1El);
+      posts['custom-test'].content.should.contain(pEl);
+      posts['custom-test'].content.should.contain(h1El);
       done();
     }).then(null, done);
   });
@@ -90,7 +90,7 @@ describe('Templating', function () {
     
     poet.init().then(function () {
       var posts = poet.posts;
-      posts['test3'].content.should.contain(scriptBody);
+      posts['test-post-three'].content.should.contain(scriptBody);
     });
   });
 });
