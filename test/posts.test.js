@@ -138,6 +138,8 @@ describe('Posts', function () {
         var posts = poet.helpers.getPosts();
         posts.should.have.length(2);
         poet.helpers.getPost('test-post-one').should.be.ok;
+        poet.helpers.getPost('deep-post').should.be.ok;
+        poet.helpers.getPost('deep-post').url.should.be.equal('/post/deep-post');
         done();
       }).then(null, done);
     });
@@ -171,6 +173,51 @@ describe('Posts', function () {
         var posts = poet.helpers.getPosts();
         posts[0].slug.should.be.equal('custom-slug');
         posts[0].url.should.be.equal('/post/custom-slug');
+        done();
+      }).then(null, done);
+    });
+
+    it('post.url and readMore links updates when using custom routes in constructor', function (done) {
+      var
+        app = express(),
+        poet = Poet(app, {
+          posts: './test/test-posts/slug',
+          routes: {
+            'post-oh-yeah/:post': 'post',
+            'posts-oh-yeah/:posts': 'posts',
+            'tags-oh-yeah/:tag': 'tag',
+            'cats-oh-yeah/:category': 'category'
+          }
+        });
+
+      poet.init().then(function () {
+        var posts = poet.helpers.getPosts();
+        posts[0].slug.should.be.equal('custom-slug');
+        posts[0].url.should.be.equal('post-oh-yeah/custom-slug');
+        posts[0].preview.should.contain('href="post-oh-yeah/custom-slug"');
+        done();
+      }).then(null, done);
+    });
+
+    it('post.url and readMore links updates when using addRoute', function (done) {
+      var
+        app = express(),
+        poet = Poet(app, {
+          posts: './test/test-posts/slug',
+          routes: {}
+        });
+
+      var handler = function () {}
+      poet.addRoute('/myposts/:post', handler);
+      poet.addRoute('/pagesss/:page', handler);
+      poet.addRoute('/mytags/:tag', handler);
+      poet.addRoute('/mycats/:category', handler);
+
+      poet.init().then(function () {
+        var posts = poet.helpers.getPosts();
+        posts[0].slug.should.be.equal('custom-slug');
+        posts[0].url.should.be.equal('/myposts/custom-slug');
+        posts[0].preview.should.contain('href="/myposts/custom-slug"');
         done();
       }).then(null, done);
     });
