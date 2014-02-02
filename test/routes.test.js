@@ -185,4 +185,63 @@ describe('Routes', function () {
       routeInfo.getCallback(app, '/mycats/:category')(reqCategory, resCategory);
     });
   });
+  
+  it('if routes object passed, no other routes should exist', function (done) {
+    var
+      app = express(),
+      poet = Poet(app, {
+        posts: './test/_postsJson',
+        routes: {
+          '/myposts/:post': 'postView',
+          '/pagesss/:page': 'pageView'
+        }
+      }),
+      reqPost = reqMock({ post: 'test-post-one'}),
+      reqPage = reqMock({ page: 1}),
+      reqTag = reqMock({ tag: 'a'}),
+      reqCategory = reqMock({ category: 'testing' }),
+      resPost = resMock(function () {
+        resPost.viewName.should.equal('postView');
+        checkDone();
+      }),
+      resPage = resMock(function () {
+        resPage.viewName.should.equal('pageView');
+        checkDone();
+      });
+
+    var checkDone = (function () {
+      var count = 0;
+      return function () {
+        if ( ++count === 2 ) { done(); }
+      };
+    })();
+
+    poet.init().then(function () {
+      expect(routeInfo.getCallback(app, '/mytags/:tag')).to.not.be.ok;
+      expect(routeInfo.getCallback(app, '/mycats/:category')).to.not.be.ok;
+      routeInfo.getCallback(app, '/myposts/:post')(reqPost, resPost);
+      routeInfo.getCallback(app, '/pagesss/:page')(reqPage, resPage);
+    });
+  });
+ 
+  [null, {}].forEach(function (routeVal) {
+    it('if route: '+ routeVal +', no routes should exist', function (done) {
+      var
+        app = express(),
+        poet = Poet(app, {
+        posts: './test/_postsJson',
+        routes: routeVal
+      });
+
+      poet.init().then(function () {
+        expect(poet.posts).to.be.ok;
+        expect(Object.keys(poet.posts)).to.have.length(6);
+        expect(routeInfo.getCallback(app, '/post/:post')).to.not.be.ok;
+        expect(routeInfo.getCallback(app, '/page/:page')).to.not.be.ok;
+        expect(routeInfo.getCallback(app, '/tag/:tag')).to.not.be.ok;
+        expect(routeInfo.getCallback(app, '/category/:category')).to.not.be.ok;
+        done();
+      }, done);
+    });
+  });
 });
