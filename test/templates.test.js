@@ -40,18 +40,31 @@ describe('Templating', function () {
     }).then(null, done);
   });
 
+  it('should correctly compile jade with includes', function (done) {
+    var
+      app = express(),
+      poet = Poet(app, {
+        posts: './test/_postsJson'
+      });
+
+    poet.init().then(function () {
+      var posts = poet.posts;
+      posts['jade-test'].content.should.contain("Include Me!");
+      done();
+    }).then(null, done);
+  });
+
   it('should correctly render with any custom formatter', function (done) {
     var
       app = express(),
       poet = Poet(app, {
         posts: './test/_postsJson'
       });
-    
+
     poet.addTemplate({
       ext: 'custom',
-      fn: function (s) {
-        s = s.replace(/\*(.*?)\*/g, '<$1>');
-        return s;
+      fn: function (opts) {
+        return opts.source.replace(/\*(.*?)\*/g, '<$1>');
       }
     }).init().then(function () {
       var posts = poet.posts;
@@ -67,11 +80,11 @@ describe('Templating', function () {
       poet = Poet(app, {
         posts: './test/_postsJson'
       });
-    
+
     poet.addTemplate({
       ext: 'custom',
-      fn: function (s, callback) {
-        callback(null, s.replace(/\*(.*?)\*/g, '<$1>'));
+      fn: function (opts, callback) {
+        callback(null, opts.source.replace(/\*(.*?)\*/g, '<$1>'));
       }
     }).init().then(function () {
       var posts = poet.posts;
