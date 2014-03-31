@@ -48,8 +48,21 @@ describe('Templating', function () {
       });
 
     poet.init().then(function () {
-      var posts = poet.posts;
-      posts['jade-test'].content.should.contain("Include Me!");
+      poet.posts['jade-test'].content.should.contain("Include Me!");
+      done();
+    }).then(null, done);
+  });
+
+
+  it('should correctly compile jade with app.locals.access', function (done) {
+    var
+      app = express(),
+      poet = Poet(app, {
+        posts: './test/_postsJson'
+      });
+    app.locals.foo = true;
+    poet.init().then(function () {
+      poet.posts['jade-test'].content.should.contain("foo is true");
       done();
     }).then(null, done);
   });
