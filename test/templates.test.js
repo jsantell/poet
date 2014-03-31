@@ -87,10 +87,49 @@ describe('Templating', function () {
       poet = Poet(app, {
         posts: './test/_postsJson'
       });
-    
+
     poet.init().then(function () {
       var posts = poet.posts;
       posts['test-post-three'].content.should.contain(scriptBody);
     });
+  });
+
+  describe('Errors', function() {
+
+    var realEnv;
+
+    beforeEach(function() { realEnv = process.env.NODE_ENV; });
+
+    afterEach(function() { process.env.NODE_ENV = realEnv; });
+
+  	it('should not appear in production', function (done) {
+      process.env.NODE_ENV = 'production';
+      var
+          app = express(),
+          poet = Poet(app, {
+            posts: './test/_postsWithErrorJson'
+          });
+      poet.init().then(function () {
+        Object.keys(poet.posts).should.have.length(1);
+        done();
+      }).then(null, done);
+    });
+
+    it('should be rendered in non production env', function (done) {
+      delete process.env.NODE_ENV;
+      var
+          app = express(),
+          poet = Poet(app, {
+            posts: './test/_postsWithErrorJson'
+          });
+
+      poet.init().then(function () {
+        var posts = poet.posts;
+        Object.keys(posts).should.have.length(2);
+        poet.posts['jade-test-with-error'].content.should.contain("> 3| Foo?");
+        done();
+      }).then(null, done);
+    });
+
   });
 });
