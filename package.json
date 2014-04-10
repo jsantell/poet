@@ -10,7 +10,8 @@
     "underscore": "1.4.x",
     "front-matter": ">= 0.1.x",
     "when": "2.1.x",
-    "fs-then": "0.1.x"
+    "fs-then": "0.1.x",
+    "mongoose": "1.3.x"
   },
   "devDependencies": {
     "mocha": ">= 1.3.2",
