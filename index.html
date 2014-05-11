@@ -4,7 +4,7 @@
     <title>Poet -- node.js blogging platform</title>
     <link rel="stylesheet" href="styles/prettify.css">
     <link rel="stylesheet" href="styles/poet.css">
-    <link href="http://fonts.googleapis.com/css?family=La+Belle+Aurore" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/cs?family=La+Belle+Aurore" rel="stylesheet" type="text/css">
     <script src="js/ga.js"></script>
   </head>
   <body>
@@ -79,11 +79,13 @@ Here goes the content that belongs to the post...
 <h3>Poet::watch([callback])</h3>
 <p>Sets up the <strong>Poet</strong> instance to watch the posts directory for changes (a new post, updated post, etc.) and reinitializes the engine and storage. An optional <code>callback</code> may be provided to signify the completion of the reinitialization.</p>
 <p>For an example of using <code>watch</code>, check out <a href="https://github.com/jsantell/poet/blob/master/examples/watcher.js">the watcher example</a></p>
+<h3>Poet::unwatch()</h3>
+<p>Removes all watchers currently bound to the <strong>Poet</strong> instance.</p>
 <h3>Poet::clearCache()</h3>
 <p>Used internally, this clears the <strong>Poet</strong> instance&#39;s internal cache, allowing it to be rebuilt on it&#39;s next use. This should not be used in most cases. Returns the <strong>Poet</strong> instance.</p>
 <h3 id="Templates">Poet::addTemplate(data)</h3>
 
-<p><strong>Poet</strong> comes with two templating engines by default (jade and markdown). To specify your own templating language, the <code>addTemplate</code> method may be used, taking a <code>data</code> object with two keys: <code>ext</code> and <code>fn</code>. <code>ext</code> may be a string or an array of strings, specifiying which extensions should use this templating engine, and <code>fn</code> does the rendering, where it is a function that passes a string parameter of text to be formatted and returns the formatted string. Here&#39;s an example of using your own YAML formatter:</p>
+<p><strong>Poet</strong> comes with two templating engines by default (jade and markdown). To specify your own templating language, the <code>addTemplate</code> method may be used, taking a <code>data</code> object with two keys: <code>ext</code> and <code>fn</code>. <code>ext</code> may be a string or an array of strings, specifiying which extensions should use this templating engine, and <code>fn</code> does the rendering, where it is a function that passes an object with several properties: <code>source</code>, <code>filename</code> and <code>locals</code> for rendering engine local variables, and returns the formatted string. Here&#39;s an example of using your own YAML formatter:</p>
 <pre>
 var
   express = require('express'),
@@ -95,7 +97,7 @@ var poet = Poet(app);
 
 poet.addTemplate({
   ext: 'yaml',
-  fn : function (s) { return yaml.eval(s); }
+  fn : function (options) { return yaml.eval(options.source); }
 }).init();
 </pre>
 
