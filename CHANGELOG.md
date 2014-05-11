@@ -1,5 +1,12 @@
 # Change Log
 
+## v1.0.0
+
+* Fixed some issues with allow Express 4.0.0+ in tests and examples 2816f43a68e04714bf28a838cb618e7cf5517a68, 57eba690d1a4e1b07a1d1c2b6fbb82e7c062cdca
+* Render helpful errors in posts that have template errors, and hide posts with template errors in production, issue #82
+* Expose additional properties to template functions, issue #81 
+* Add method `unwatch` to remove all current watchers, issue #68 
+
 ## v1.0.0-rc4
 * :warning: The `routes` configuration option during instantiation will no longer create routes that are not explicitly defined, unless using defaults, issue #71
   * Leaving `routes` as empty will continue to use the default routing.
