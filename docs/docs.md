@@ -80,7 +80,7 @@ For an example of using `watch`, check out [the watcher example](https://github.
 Used internally, this clears the **Poet** instance's internal cache, allowing it to be rebuilt on it's next use. This should not be used in most cases. Returns the **Poet** instance.
 <h3 id="Templates">Poet::addTemplate(data)</h3>
 
-**Poet** comes with two templating engines by default (jade and markdown). To specify your own templating language, the `addTemplate` method may be used, taking a `data` object with two keys: `ext` and `fn`. `ext` may be a string or an array of strings, specifiying which extensions should use this templating engine, and `fn` does the rendering, where it is a function that passes a string parameter of text to be formatted and returns the formatted string. Here's an example of using your own YAML formatter:
+**Poet** comes with two templating engines by default (jade and markdown). To specify your own templating language, the `addTemplate` method may be used, taking a `data` object with two keys: `ext` and `fn`. `ext` may be a string or an array of strings, specifiying which extensions should use this templating engine, and `fn` does the rendering, where it is a function that passes an object with several properties: `source`, `filename` and `locals` for rendering engine local variables, and returns the formatted string. Here's an example of using your own YAML formatter:
 
 <pre>
 var
@@ -93,7 +93,7 @@ var poet = Poet(app);
 
 poet.addTemplate({
   ext: 'yaml',
-  fn : function (s) { return yaml.eval(s); }
+  fn : function (options) { return yaml.eval(options.source); }
 }).init();
 </pre>
 
