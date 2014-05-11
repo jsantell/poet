@@ -75,6 +75,10 @@ Sets up the **Poet** instance to watch the posts directory for changes (a new po
 
 For an example of using `watch`, check out [the watcher example](https://github.com/jsantell/poet/blob/master/examples/watcher.js)
 
+### Poet::unwatch()
+
+Removes all watchers currently bound to the **Poet** instance.
+
 ### Poet::clearCache()
 
 Used internally, this clears the **Poet** instance's internal cache, allowing it to be rebuilt on it's next use. This should not be used in most cases. Returns the **Poet** instance.
