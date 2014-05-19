@@ -4,7 +4,7 @@
   "version": "1.0.1",
   "main": "lib/poet",
   "dependencies": {
-    "marked": "0.2.8",
+    "marked": "~0.3.2",
     "jade": ">= 0.27.1",
     "json-front-matter": ">= 0.1.4",
     "underscore": "1.4.x",
