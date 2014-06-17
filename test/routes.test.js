@@ -226,12 +226,12 @@ describe('Routes', function () {
  
   [null, {}].forEach(function (routeVal) {
     it('if route: '+ routeVal +', no routes should exist', function (done) {
-      var
-        app = express(),
-        poet = Poet(app, {
-        posts: './test/_postsJson',
-        routes: routeVal
-      });
+
+      var app = express(),
+          poet = Poet(app, {
+            posts: './test/_postsJson',
+            routes: routeVal
+          });
 
       poet.init().then(function () {
         expect(poet.posts).to.be.ok;
