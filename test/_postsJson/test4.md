@@ -4,6 +4,7 @@
   "category" : "other cat",
   "date" : "1-1-2008",
   "previewLength" : 28,
+  "href": "/custom/href",
   "draft" : true
 }}}
 

@@ -162,6 +162,21 @@ describe('Posts', function () {
   });
 
   describe('Post Attributes', function () {
+    it('href attribute overrides default href and changes URL', function (done) {
+      var
+        app = express(),
+        poet = Poet(app, {
+          posts: './test/_postsJson'
+        });
+
+      poet.init().then(function () {
+        var posts = poet.helpers.getPosts();
+        posts[5].url.should.be.equal('/custom/href');
+        done();
+      }).then(null, done);
+
+    });
+
     it('slug attribute overrides default slug and changes URL', function (done) {
       var
         app = express(),
