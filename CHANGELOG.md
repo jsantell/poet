@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.0.0
+
+* Now depending on Express 4.0.0+, issue #102, no longer supports Express v3.
+
 ## v1.0.0
 
 * Fixed some issues with allow Express 4.0.0+ in tests and examples 2816f43a68e04714bf28a838cb618e7cf5517a68, 57eba690d1a4e1b07a1d1c2b6fbb82e7c062cdca

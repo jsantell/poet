@@ -29,6 +29,8 @@ poet.init().then(function () {
 /* set up the rest of the express app */
 </pre>
 
+If using Express 3, be sure to use Poet version <= `1.1.0`. For Express 4+, use Poet `2.0.0+`.
+
 ## Posts
 
 Posts are constructed in [markdown](http://daringfireball.net/projects/markdown/)/[jade](http://jade-lang.com/)/[whatever-you-want](#Templates), prefixed by front matter via [YAML](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) or [JSON](https://github.com/jsantell/node-json-front-matter). All attributes are stored in the posts object. An example of a blog post formatted with JSON Front Matter is below:

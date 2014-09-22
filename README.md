@@ -9,11 +9,9 @@ View the source for [jsantell.com](https://github.com/jsantell/jsantell.com) to 
 
 ![The Node Poet](https://raw.github.com/jsantell/poet/gh-pages/img/poet.png)
 
-## New Release
+## Support
 
-**v1.0.0**
-
-[**Changes in v1.0.0**](https://github.com/jsantell/poet/blob/master/CHANGELOG.md)
+If using Express 3, use **v1.1.0**. For sites using Express 4+, use **v2.0.0+**.
 
 ## Documentation
 
