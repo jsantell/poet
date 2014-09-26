@@ -31,6 +31,7 @@ These sites are using Poet for their blogging, check them out! Ping me, or send 
 * [Morgondag](http://morgondag.nu)
 * [Vemdel - Raspberry Hunt](http://vemdel-game.com)
 * [jobZETA](http://jobzeta.com)
+* [DevinYoungWeb.com](http://devinyoungweb.com)
 
 ## Installing
 
