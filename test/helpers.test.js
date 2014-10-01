@@ -48,19 +48,6 @@ describe('helpers[tag|category|page]URL()', function () {
       done();
     }, done);
   });
-  it('mounted paths are respected in [tag|category|page]URL', function (done) {
-    var
-      mainApp = express(),
-      poetApp = express();
-    mainApp.use('/poet-app', poetApp);
-    var poet = Poet(poetApp, { posts: './test/_postsJson' });
-
-    poet.init().then(function () {
-      expect(poet.helpers.categoryURL('phat bass')).to.be.equal('/poet-app/category/phat%20bass');
-      expect(poet.helpers.pageURL('phat bass')).to.be.equal('/poet-app/page/phat%20bass');
-      expect(poet.helpers.tagURL('phat bass')).to.be.equal('/poet-app/tag/phat%20bass');
-    }).then(done, done);
-  });
 });
 
 describe('helpers.getPostCount()', function () {
