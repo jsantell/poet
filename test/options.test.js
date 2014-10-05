@@ -29,8 +29,8 @@ describe('Options', function () {
   });
 
   describe('readMoreTag', function () {
-    var customPreview = '<p><em>Lorem ipsum</em></p>\n<p><a href="/post/read-more-test" title="Read more of Read More Test">read more</a></p>',
-      defaultPreview = '<p><em>Lorem ipsum</em>\n!!!more!!!\n<em>more ipsum</em></p>\n<p><a href="/post/read-more-test" title="Read more of Read More Test">read more</a></p>';
+    var customPreview = '<p><em>Lorem ipsum</em></p>\n<p class="poet-read-more"><a href="/post/read-more-test" title="Read more of Read More Test">read more</a></p>',
+      defaultPreview = '<p><em>Lorem ipsum</em>\n!!!more!!!\n<em>more ipsum</em></p>\n<p class="poet-read-more"><a href="/post/read-more-test" title="Read more of Read More Test">read more</a></p>';
 
     it('should by default use <!--more-->', function (done) {
       var

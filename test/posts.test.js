@@ -1,4 +1,4 @@
-var
+  var
   Poet = require('../lib/poet'),
   express = require('express'),
   chai = require('chai'),
@@ -8,9 +8,9 @@ var
 var
   postPreview = '<p><em>Lorem ipsum</em> dolor sit amet, consectetur adipisicing elit.</p>',
   postBody    = '<p><em>Lorem ipsum</em> dolor sit amet, consectetur adipisicing elit.</p>\n<h1>Header 1</h1>\n',
-  readMoreAnchorp1 = '<p><a href="/post/test-post-one" title="Read more of Test Post One">read more</a></p>',
-  readMoreAnchorp2 = '<p><a href="/post/test-post-two" title="Read more of Test Post Two">read more</a></p>';
-  readMoreAnchorp3 = '<p><a href="/post/test-post-three" title="Read more of Test Post Three">read more</a></p>';
+  readMoreAnchorp1 = '<p class="poet-read-more"><a href="/post/test-post-one" title="Read more of Test Post One">read more</a></p>',
+  readMoreAnchorp2 = '<p class="poet-read-more"><a href="/post/test-post-two" title="Read more of Test Post Two">read more</a></p>';
+  readMoreAnchorp3 = '<p class="poet-read-more"><a href="/post/test-post-three" title="Read more of Test Post Three">read more</a></p>';
 
 describe('Posts', function () {
   describe('Posts with JSON front-matter', function () {
