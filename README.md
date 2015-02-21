@@ -32,7 +32,6 @@ These sites are using Poet for their blogging, check them out! Ping me, or send 
 * [FightMagicRun](http://fightmagicrun.com/blog)
 * [Morgondag](http://morgondag.nu)
 * [Vemdel - Raspberry Hunt](http://vemdel-game.com)
-* [jobZETA](http://jobzeta.com)
 
 ## Installing
 
