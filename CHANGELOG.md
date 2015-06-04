@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.0.1
+
+* Added Support scheduled posts.
+
 ## v2.0.0
 
 * Now depending on Express 4.0.0+, issue #102, no longer supports Express v3.
