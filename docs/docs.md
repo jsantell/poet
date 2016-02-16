@@ -147,7 +147,7 @@ For an example of customizing your route names and views, view the [example in t
 
 ## Helpers
 
-Built in helper methods are stored on the **Poet** instance's `helper` property. Used internally, and in the view locals, they can be used outside of **Poet** as well.
+Built in helper methods are stored on the **Poet** instance's `helpers` property. Used internally, and in the view locals, they can be used outside of **Poet** as well.
 
 * `getPosts(from, to)` - an array of reverse chronologically ordered post objects. May specify `from` and `to` based on their index, to limit which posts should be returned.
 * `getTags()` - an array of tag names
