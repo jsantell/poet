@@ -22,15 +22,9 @@ Full documentation for *Poet* can be found at [http://jsantell.github.io/poet](h
 These sites are using Poet for their blogging, check them out! Ping me, or send a PR if you too are using Poet in the wild.
 
 * [Yellow Pages Engineering](http://engineering.yp.com/)
-* [BryanPaluch.com](http://bryanpaluch.com)
-* [EffectiveIdea.com](http://effectiveidea.com)
 * [fictitious entry](http://fictitiousentry.com/)
-* [AndreasKlein.org](http://v7.andreasklein.org)
-* [Keyboardsurfer](kbsurfer.com)
 * [FightMagicRun](http://fightmagicrun.com/blog)
 * [Morgondag](http://morgondag.nu)
-* [Vemdel - Raspberry Hunt](http://vemdel-game.com)
-* [jobZETA](http://jobzeta.com)
 * [DevinYoungWeb.com](http://devinyoungweb.com)
 * [jessehuang.com](http://jessehuang.com)
 
