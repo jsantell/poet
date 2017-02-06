@@ -27,6 +27,7 @@ These sites are using Poet for their blogging, check them out! Ping me, or send 
 * [Morgondag](http://morgondag.nu)
 * [DevinYoungWeb.com](http://devinyoungweb.com)
 * [jessehuang.com](http://jessehuang.com)
+* [The Rustual Boy emulator blog](http://rustualboy.com/blog)
 
 ## Installing
 
