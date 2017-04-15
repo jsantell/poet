@@ -1,0 +1,9 @@
+<% include header.ejs %>
+
+<h3><a href="<%- tagUrl(tag) %>">posts tagged * <%= tag %></a></h3>
+
+<% posts.forEach(function(post){ %>
+  <% include postSnippet.ejs %>
+<% }) %>
+
+<% include footer.ejs %>

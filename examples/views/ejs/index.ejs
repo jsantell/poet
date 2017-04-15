@@ -1,0 +1,12 @@
+<% include header.ejs %>
+
+<% var posts = getPosts(0,5) %>
+<% var page = 1 %>
+
+<% posts.forEach(function(post){ %>
+  <% include postSnippet.ejs %>
+<% }) %>
+
+<% include pagination.ejs %>
+
+<% include footer.ejs %>
