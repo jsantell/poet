@@ -1,7 +1,7 @@
 {
   "name": "poet",
   "description": "quick and easy blog module, using markdown, jade, whatever",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "main": "lib/poet",
   "dependencies": {
     "marked": "~0.3.2",
@@ -38,5 +38,7 @@
     "url": "http://github.com/jsantell"
   },
   "license": "MIT",
-  "engines": ["node >= 0.10.2"]
+  "engines": [
+    "node >= 0.10.2"
+  ]
 }
