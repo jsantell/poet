@@ -41,7 +41,7 @@ describe('Posts', function () {
         // All posts should be in order
         posts[5].title.should.equals('Test Post Four - A Draft');
         posts[4].title.should.equal('Read More Test');
-        posts[3].title.should.equal('Jade Test');
+        posts[3].title.should.equal('Pug Test');
         posts[2].title.should.equal('Test Post One');
         posts[1].title.should.equal('Test Post Three');
         posts[0].title.should.equal('Test Post Two');

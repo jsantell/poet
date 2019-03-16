@@ -16,7 +16,15 @@
     <div class="wrap">
       <div class="cartoon"></div>
 <h2 id="what-is-poet-">What is Poet?</h2>
-<p><a href="http://github.com/jsantell/poet" title="Poet"><strong>Poet</strong></a> is a blog generator in <a href="http://nodejs.org" title="node.js">node.js</a> to generate routing, render markdown/jade/whatever posts, and get a blog up and running <em>fast</em>. Poet may not make you blog-famous, and it may give you one less excuse for not having a blog, but just imagine the insane hipster cred you get for having node power your blog. <em>&quot;Cool blog, is this Wordpress or something?&quot;</em> your square friend asks. <em>&quot;Nah dude, this is in node,&quot;</em> you respond, while skateboarding off into the sunset, doing mad flips and stuff. Little do they know you just used Poet&#39;s autoroute generation to get your content in, like, seconds, up on that internet.</p>
+<p><a href="http://github.com/jsantell/poet" title="Poet"><strong>Poet</strong></a> is a blog generator in
+  <a href="http://nodejs.org" title="node.js">node.js</a> to generate routing, render markdown/pug/whatever posts,
+  and get a blog up and running <em>fast</em>. Poet may not make you blog-famous,
+  and it may give you one less excuse for not having a blog,
+  but just imagine the insane hipster cred you get for having node power your blog.
+  <em>&quot;Cool blog, is this Wordpress or something?&quot;</em> your square friend asks.
+  <em>&quot;Nah dude, this is in node,&quot;</em> you respond,
+  while skateboarding off into the sunset, doing mad flips and stuff.
+  Little do they know you just used Poet&#39;s autoroute generation to get your content in, like, seconds, up on that internet.</p>
 <h2 id="getting-started">Getting Started</h2>
 <p>First thing first, throw <strong>Poet</strong> into your express app&#39;s package.json, or just install it locally with:</p>
 <pre>
@@ -45,7 +53,7 @@ poet.init().then(function () {
 
 <p>If using Express 3, be sure to use Poet version &lt;= <code>1.1.0</code>. For Express 4+, use Poet <code>2.0.0+</code>.</p>
 <h2 id="posts">Posts</h2>
-<p>Posts are constructed in <a href="http://daringfireball.net/projects/markdown/">markdown</a>/<a href="http://jade-lang.com/">jade</a>/<a href="#Templates">whatever-you-want</a>, prefixed by front matter via <a href="https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter">YAML</a> or <a href="https://github.com/jsantell/node-json-front-matter">JSON</a>. All attributes are stored in the posts object. An example of a blog post formatted with JSON Front Matter is below:</p>
+<p>Posts are constructed in <a href="http://daringfireball.net/projects/markdown/">markdown</a>/<a href="https://pugjs.org">pug</a>/<a href="#Templates">whatever-you-want</a>, prefixed by front matter via <a href="https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter">YAML</a> or <a href="https://github.com/jsantell/node-json-front-matter">JSON</a>. All attributes are stored in the posts object. An example of a blog post formatted with JSON Front Matter is below:</p>
 <pre>
 {{{
   "title": "Hello World!",
@@ -86,7 +94,7 @@ Here goes the content that belongs to the post...
 <p>Used internally, this clears the <strong>Poet</strong> instance&#39;s internal cache, allowing it to be rebuilt on it&#39;s next use. This should not be used in most cases. Returns the <strong>Poet</strong> instance.</p>
 <h3 id="Templates">Poet::addTemplate(data)</h3>
 
-<p><strong>Poet</strong> comes with two templating engines by default (jade and markdown). To specify your own templating language, the <code>addTemplate</code> method may be used, taking a <code>data</code> object with two keys: <code>ext</code> and <code>fn</code>. <code>ext</code> may be a string or an array of strings, specifiying which extensions should use this templating engine, and <code>fn</code> does the rendering, where it is a function that passes an object with several properties: <code>source</code>, <code>filename</code> and <code>locals</code> for rendering engine local variables, and returns the formatted string. Here&#39;s an example of using your own YAML formatter:</p>
+<p><strong>Poet</strong> comes with two templating engines by default (pug and markdown). To specify your own templating language, the <code>addTemplate</code> method may be used, taking a <code>data</code> object with two keys: <code>ext</code> and <code>fn</code>. <code>ext</code> may be a string or an array of strings, specifiying which extensions should use this templating engine, and <code>fn</code> does the rendering, where it is a function that passes an object with several properties: <code>source</code>, <code>filename</code> and <code>locals</code> for rendering engine local variables, and returns the formatted string. Here&#39;s an example of using your own YAML formatter:</p>
 <pre>
 var
   express = require('express'),

@@ -1,5 +1,5 @@
 ## What is Poet?
-<a href="http://github.com/jsantell/poet" title="Poet">**Poet**</a> is a blog generator in <a href="http://nodejs.org" title="node.js">node.js</a> to generate routing, render markdown/jade/whatever posts, and get a blog up and running *fast*. Poet may not make you blog-famous, and it may give you one less excuse for not having a blog, but just imagine the insane hipster cred you get for having node power your blog. *"Cool blog, is this Wordpress or something?"* your square friend asks. *"Nah dude, this is in node,"* you respond, while skateboarding off into the sunset, doing mad flips and stuff. Little do they know you just used Poet's autoroute generation to get your content in, like, seconds, up on that internet.
+<a href="http://github.com/jsantell/poet" title="Poet">**Poet**</a> is a blog generator in <a href="http://nodejs.org" title="node.js">node.js</a> to generate routing, render markdown/pug/whatever posts, and get a blog up and running *fast*. Poet may not make you blog-famous, and it may give you one less excuse for not having a blog, but just imagine the insane hipster cred you get for having node power your blog. *"Cool blog, is this Wordpress or something?"* your square friend asks. *"Nah dude, this is in node,"* you respond, while skateboarding off into the sunset, doing mad flips and stuff. Little do they know you just used Poet's autoroute generation to get your content in, like, seconds, up on that internet.
 
 ## Getting Started
 First thing first, throw **Poet** into your express app's package.json, or just install it locally with:
@@ -33,7 +33,7 @@ If using Express 3, be sure to use Poet version <= `1.1.0`. For Express 4+, use 
 
 ## Posts
 
-Posts are constructed in [markdown](http://daringfireball.net/projects/markdown/)/[jade](http://jade-lang.com/)/[whatever-you-want](#Templates), prefixed by front matter via [YAML](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) or [JSON](https://github.com/jsantell/node-json-front-matter). All attributes are stored in the posts object. An example of a blog post formatted with JSON Front Matter is below:
+Posts are constructed in [markdown](http://daringfireball.net/projects/markdown/)/[pug](https://pugjs.org/)/[whatever-you-want](#Templates), prefixed by front matter via [YAML](https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter) or [JSON](https://github.com/jsantell/node-json-front-matter). All attributes are stored in the posts object. An example of a blog post formatted with JSON Front Matter is below:
 
 <pre>
 {{{
@@ -86,7 +86,7 @@ Removes all watchers currently bound to the **Poet** instance.
 Used internally, this clears the **Poet** instance's internal cache, allowing it to be rebuilt on it's next use. This should not be used in most cases. Returns the **Poet** instance.
 <h3 id="Templates">Poet::addTemplate(data)</h3>
 
-**Poet** comes with two templating engines by default (jade and markdown). To specify your own templating language, the `addTemplate` method may be used, taking a `data` object with two keys: `ext` and `fn`. `ext` may be a string or an array of strings, specifiying which extensions should use this templating engine, and `fn` does the rendering, where it is a function that passes an object with several properties: `source`, `filename` and `locals` for rendering engine local variables, and returns the formatted string. Here's an example of using your own YAML formatter:
+**Poet** comes with two templating engines by default (pug and markdown). To specify your own templating language, the `addTemplate` method may be used, taking a `data` object with two keys: `ext` and `fn`. `ext` may be a string or an array of strings, specifiying which extensions should use this templating engine, and `fn` does the rendering, where it is a function that passes an object with several properties: `source`, `filename` and `locals` for rendering engine local variables, and returns the formatted string. Here's an example of using your own YAML formatter:
 
 <pre>
 var

@@ -25,7 +25,7 @@ describe('Templating', function () {
     }).then(null, done);
   });
 
-  it('should correctly compile jade', function (done) {
+  it('should correctly compile pug', function (done) {
     var
       app = express(),
       poet = Poet(app, {
@@ -34,13 +34,13 @@ describe('Templating', function () {
 
     poet.init().then(function () {
       var posts = poet.posts;
-      posts['jade-test'].content.should.contain(pEl);
-      posts['jade-test'].content.should.contain(h1El);
+      posts['pug-test'].content.should.contain(pEl);
+      posts['pug-test'].content.should.contain(h1El);
       done();
     }).then(null, done);
   });
 
-  it('should correctly compile jade with includes', function (done) {
+  it('should correctly compile pug with includes', function (done) {
     var
       app = express(),
       poet = Poet(app, {
@@ -48,13 +48,13 @@ describe('Templating', function () {
       });
 
     poet.init().then(function () {
-      poet.posts['jade-test'].content.should.contain("Include Me!");
+      poet.posts['pug-test'].content.should.contain("Include Me!");
       done();
     }).then(null, done);
   });
 
 
-  it('should correctly compile jade with app.locals.access', function (done) {
+  it('should correctly compile pug with app.locals.access', function (done) {
     var
       app = express(),
       poet = Poet(app, {
@@ -62,7 +62,7 @@ describe('Templating', function () {
       });
     app.locals.foo = true;
     poet.init().then(function () {
-      poet.posts['jade-test'].content.should.contain("foo is true");
+      poet.posts['pug-test'].content.should.contain("foo is true");
       done();
     }).then(null, done);
   });
@@ -152,7 +152,7 @@ describe('Templating', function () {
       poet.init().then(function () {
         var posts = poet.posts;
         Object.keys(posts).should.have.length(2);
-        poet.posts['jade-test-with-error'].content.should.contain("> 3| Foo?");
+        poet.posts['pug-test-with-error'].content.should.contain("> 3| Foo?");
         done();
       }).then(null, done);
     });

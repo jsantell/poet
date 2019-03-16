@@ -81,9 +81,9 @@ describe('helpers.getPostCount()', function () {
 describe('helpers.getPost(title)', function () {
   it('should return the correct post associated with `title`', function (done) {
     setup(function (poet) {
-      var post = poet.helpers.getPost('jade-test');
-      expect(post.slug).to.be.equal('jade-test');
-      expect(post.title).to.be.equal('Jade Test');
+      var post = poet.helpers.getPost('pug-test');
+      expect(post.slug).to.be.equal('pug-test');
+      expect(post.title).to.be.equal('Pug Test');
       done();
     }, done);
   });
