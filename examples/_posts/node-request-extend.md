@@ -33,7 +33,7 @@ var
 
 app.configure(function () {
   app.set( 'views', __dirname + '/views' );
-  app.set( 'view engine', 'jade' );
+  app.set( 'view engine', 'pug' );
   app.use( reqExtend( 'models', models ));
   app.use( reqExtend( 'config', config ));
   app.use( express.static( __dirname + '/public' ));

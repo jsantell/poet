@@ -21,7 +21,7 @@ poet.init().then(function () {
   });
 });
 
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
