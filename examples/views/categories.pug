@@ -3,6 +3,6 @@ extends layout
 block content
   h1 All Categories
   ul
-    - each cat in getCategories()
+    each cat in getCategories()
       li
         a(href=categoryUrl(cat)) #{cat}
