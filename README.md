@@ -3,9 +3,7 @@ Poet [![Build Status](https://travis-ci.org/jsantell/poet.png)](https://travis-c
 
 **[Looking for maintenance help!](https://github.com/jsantell/poet/issues/91)**
 
-Poet has your code-blogging back. Renders markdown, pug, or any templated files as posts, tag it up with metadata that's passed into any view engine you want, instant pagination, tag and category views, and home in time for dinner.
-
-View the source for [jsantell.com](https://github.com/jsantell/jsantell.com) to see an example of Poet in use. Much `<3` to [Brittany Fedor](http://bfedor.com/) for the sweet art!
+Poet is a lightweight blogging library. Renders markdown, pug, or any templated files as posts, tag it up with metadata that's passed into any view engine you want, instant pagination, tag and category views.
 
 ![The Node Poet](https://raw.github.com/jsantell/poet/gh-pages/img/poet.png)
 
@@ -66,3 +64,9 @@ Please read the [CONTRIBUTING.md](https://github.com/jsantell/poet/blob/master/C
 ## License
 
 MIT License, Copyright (c) 2012 Jordan Santell
+
+## Attribution
+
+Many thanks :blue_heart: to [Brittany Fedor](http://bfedor.com/) for the sweet art!
+
+

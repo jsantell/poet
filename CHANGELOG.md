@@ -1,5 +1,9 @@
 # Change Log
 
+## v3.0.0
+
+* Now using `pug` instead of `jade` for default templating.
+
 ## v2.0.1
 
 * Added Support scheduled posts.

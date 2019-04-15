@@ -1,7 +1,7 @@
 {
   "name": "poet",
-  "description": "quick and easy blog module, using markdown, pug, whatever",
-  "version": "2.0.3",
+  "description": "quick and easy blog module",
+  "version": "3.0.0",
   "main": "lib/poet",
   "dependencies": {
     "front-matter": ">= 0.1.x",
@@ -38,8 +38,5 @@
     "name": "Jordan Santell",
     "url": "http://github.com/jsantell"
   },
-  "license": "MIT",
-  "engines": [
-    "node >= 0.10.2"
-  ]
+  "license": "MIT"
 }
