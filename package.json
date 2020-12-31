@@ -8,7 +8,7 @@
     "fs-then": "0.1.x",
     "json-front-matter": ">= 0.1.4",
     "jstransformer": "^1.0.0",
-    "marked": "~0.3.2",
+    "marked": ">=0.6.2",
     "pug": "^2.0.3",
     "underscore": "1.4.x",
     "when": "2.1.x"
