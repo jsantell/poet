@@ -9,7 +9,7 @@
     "json-front-matter": ">= 0.1.4",
     "jstransformer": "^1.0.0",
     "marked": ">=0.6.2",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "underscore": "1.4.x",
     "when": "2.1.x"
   },
