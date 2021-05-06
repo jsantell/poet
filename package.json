@@ -10,7 +10,7 @@
     "jstransformer": "^1.0.0",
     "marked": ">=0.6.2",
     "pug": "^2.0.3",
-    "underscore": "1.4.x",
+    "underscore": "1.12.x",
     "when": "2.1.x"
   },
   "devDependencies": {
