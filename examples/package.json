@@ -6,7 +6,7 @@
   ],
   "private": true,
   "dependencies": {
-    "express": "4.0.0",
-    "pug": "^2.0.3"
+    "express": "^4.5.0",
+    "pug": "^3.0.2"
   }
 }
