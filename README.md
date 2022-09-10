@@ -19,9 +19,8 @@ Full documentation for *Poet* can be found at [http://jsantell.github.io/poet](h
 
 These sites are using Poet for their blogging, check them out! Ping me, or send a PR if you too are using Poet in the wild.
 
-* [Morgondag](http://morgondag.nu)
+* [NihalNavath.com](https://nihalnavath.com/BlogNavigation)
 * [DevinYoungWeb.com](http://devinyoungweb.com)
-* [The Rustual Boy emulator blog](http://rustualboy.com/blog)
 
 ## Installing
 

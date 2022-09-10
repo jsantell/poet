@@ -2,7 +2,7 @@
 
 ## Reporting Issues
 
-Please notate what is occuring, what you expect to occur, and reproducable test case, ideally a link to the repository/branch where it's occuring
+Please notate what is occurring, what you expect to occur, and reproducible test case, ideally a link to the repository/branch where it's occurring
 
 ## Pull Requests
 
